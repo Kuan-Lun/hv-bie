@@ -49,6 +49,29 @@
 - 不要以句號結尾
 - 限制在 50 字元以內
 
+#### 具體性（Specificity）
+
+- 主旨需具體點出此次修改的「內容與重點」；盡量包含被影響的檔案、章節或主題名稱（如 version、branch-mgmt、release、git-workflow）。
+- 若主旨長度限制無法完整表達，請在 body 以 1–3 個條列補充「做了什麼／為什麼」與關鍵影響。
+- 文件／政策性變更，優先使用能辨識主題的 scope，例如：`version`、`branch-mgmt`、`release`、`git-workflow`。
+
+#### 文件（docs）提交範例
+
+- Good: `docs(version): clarify bump/changelog/tag process`
+- Good: `docs(branch-mgmt): define naming and protection rules`
+- Bad: `docs(git-workflow): update docs`
+- Bad: `docs: update`
+
+簡短 body 範例（當主旨不敷表達時）：
+
+```text
+docs(version): clarify bump/changelog/tag process
+
+- add pre-release checks
+- separate atomic commits for version and changelog
+- recommend annotated tagging and push steps
+```
+
 #### 原子性提交
 
 - 根據檔案差異與修改內容撰寫提交訊息
