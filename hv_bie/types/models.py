@@ -49,7 +49,7 @@ class Monster:
     hp_percent: float
     mp_percent: float
     sp_percent: float
-    buffs: list[Buff] = field(default_factory=list)
+    buffs: dict[str, Buff] = field(default_factory=dict)
 
 
 @dataclass

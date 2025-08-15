@@ -217,7 +217,7 @@
   * `hp_percent: float`
   * `mp_percent: float`
   * `sp_percent: float`
-  * `buffs: list[Buff]`
+  * `buffs: dict[str, Buff]`（以 Buff 名稱為鍵）
 
 * `CombatLog`
 

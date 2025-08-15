@@ -256,7 +256,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
         sp = -1.0 if dead else bar_pct(r"nbarred\.png", "spirit")
 
         # monster buffs
-        m_buffs: list[Buff] = []
+        m_buffs: dict[str, Buff] = {}
         bc = mdiv.find("div", class_="btm6")
         if bc:
             for img in bc.find_all("img"):
@@ -277,8 +277,8 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
                             rem = float(dur_raw)
                         except ValueError:
                             rem = None
-                    m_buffs.append(
-                        Buff(name=bname, remaining_turns=rem, is_permanent=is_perm)
+                    m_buffs[bname] = Buff(
+                        name=bname, remaining_turns=rem, is_permanent=is_perm
                     )
 
         monsters[idx] = Monster(

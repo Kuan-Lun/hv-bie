@@ -160,7 +160,7 @@ def test_parse_fixture_1():
     assert any(m.system_monster_type for m in snap.monsters.values())
 
     # monster buffs parsed
-    assert any(any(b.name for b in m.buffs) for m in snap.monsters.values())
+    assert any(any(b.name for b in m.buffs.values()) for m in snap.monsters.values())
 
 
 def test_parse_fixture_4():
