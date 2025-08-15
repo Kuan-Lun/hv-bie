@@ -1,0 +1,4 @@
+include SRS.md
+include CHANGELOG.md
+include LICENSE
+recursive-include tests/fixtures *.htm *.js *.css *.png
