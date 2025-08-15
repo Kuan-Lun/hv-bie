@@ -227,7 +227,7 @@
 
 * `ItemsState`
 
-  * `items: list[Item]`
+  * `items: dict[str, Item]`（以道具「顯示名稱」為鍵）
   * `quickbar: list[QuickSlot]`
 
 * `Item`
