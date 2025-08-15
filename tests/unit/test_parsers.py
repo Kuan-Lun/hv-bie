@@ -23,7 +23,7 @@ def test_vitals_and_buffs():
     assert p.hp_value > 0 and p.mp_value > 0 and p.sp_value > 0
 
     buffs = parse_player_buffs(s0, warnings)
-    assert any(b.name == "Protection" or b.name == "Spirit Shield" for b in buffs)
+    assert ("Protection" in buffs) or ("Spirit Shield" in buffs)
 
 
 def test_abilities_tables():

@@ -22,7 +22,7 @@ def test_parse_fixture_0():
     assert snap.player.overcharge_value == 0
 
     # player buffs (from effects pane) and no Spirit Stance (spirit_n)
-    pbuf_names = {b.name for b in snap.player.buffs}
+    pbuf_names = set(snap.player.buffs.keys())
     assert {
         "Protection",
         "Haste",
@@ -153,7 +153,7 @@ def test_parse_fixture_1():
     assert snap.player.overcharge_value == 133
 
     # spirit stance in effects
-    names = {b.name for b in snap.player.buffs}
+    names = set(snap.player.buffs.keys())
     assert "Spirit Stance" in names
 
     # system monster present (heuristic sets Rare for the one with style)
