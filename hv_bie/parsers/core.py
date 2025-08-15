@@ -107,8 +107,8 @@ _ICON_MAP = {
 }
 
 
-def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> list[Buff]:
-    out: list[Buff] = []
+def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Buff]:
+    out: dict[str, Buff] = {}
     # Spirit stance is indicated by spirit_a.png on ckey_spirit
     spirit = soup.find("img", id="ckey_spirit")
     if (
@@ -116,8 +116,8 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> list[Buff]:
         and hasattr(spirit, "get")
         and "spirit_a.png" in (spirit.get("src") or "")
     ):
-        out.append(
-            Buff(name="Spirit Stance", remaining_seconds=None, is_permanent=True)
+        out["Spirit Stance"] = Buff(
+            name="Spirit Stance", remaining_turns=None, is_permanent=True
         )
 
     pane = soup.find("div", id="pane_effects")
@@ -146,7 +146,7 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> list[Buff]:
         # normalize some names
         norm = _ICON_MAP.get(name, name)
         # About-to-expire opacity indicates ticking, but we keep numeric seconds as-is
-        out.append(Buff(name=norm, remaining_seconds=rem, is_permanent=is_perm))
+        out[norm] = Buff(name=norm, remaining_turns=rem, is_permanent=is_perm)
 
     return out
 
@@ -278,7 +278,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> list[Monster]:
                         except ValueError:
                             rem = None
                     m_buffs.append(
-                        Buff(name=bname, remaining_seconds=rem, is_permanent=is_perm)
+                        Buff(name=bname, remaining_turns=rem, is_permanent=is_perm)
                     )
 
         monsters.append(
