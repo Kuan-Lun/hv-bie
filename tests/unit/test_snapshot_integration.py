@@ -21,6 +21,17 @@ def test_parse_fixture_0():
     assert snap.player.sp_value == 1317
     assert snap.player.overcharge_value == 0
 
+    # player buffs (from effects pane) and no Spirit Stance (spirit_n)
+    pbuf_names = {b.name for b in snap.player.buffs}
+    assert {
+        "Protection",
+        "Haste",
+        "Shadow Veil",
+        "Spark of Life",
+        "Spirit Shield",
+    }.issubset(pbuf_names)
+    assert "Spirit Stance" not in pbuf_names
+
     # abilities
     # skills
     assert len(snap.abilities.skills) == 5
@@ -62,6 +73,7 @@ def test_parse_fixture_0():
     # monsters
     assert len(snap.monsters) == 2
     names = {m.name for m in snap.monsters}
+    # first monster name exists and is parsed (from title)
     monster0 = snap.monsters[0]
     assert "Touch" in names
     assert monster0.alive is True
@@ -72,6 +84,23 @@ def test_parse_fixture_0():
     assert monster0.name == "Touch"
     assert monster0.slot_index == 1
     assert monster0.system_monster_type is None
+    # second monster name exists and is parsed (from title)
+    monster1 = snap.monsters[1]
+    assert "Peerlesssss2 Oak Staff" in names
+    assert monster1.alive is True
+    assert len(monster1.buffs) == 0
+    assert monster1.hp_percent == 100.0
+    assert 44.5 <= monster1.mp_percent <= 45.5
+    assert 8.0 <= monster1.sp_percent <= 9.0
+    assert monster1.name == "Peerlesssss2 Oak Staff"
+    assert monster1.slot_index == 2
+    assert monster1.system_monster_type is None
+    # all monsters have valid percentages when alive
+    for m in snap.monsters:
+        if m.alive:
+            assert 0.0 <= m.hp_percent <= 100.0
+            assert 0.0 <= m.mp_percent <= 100.0
+            assert 0.0 <= m.sp_percent <= 100.0
 
     # log
     assert snap.log.lines[-1] == "You gain the effect Spirit Shield."
@@ -81,6 +110,33 @@ def test_parse_fixture_0():
 
     # items
     assert any(i.name == "Health Draught" for i in snap.items.items)
+    needed_items = {
+        "Health Draught",
+        "Health Potion",
+        "Health Elixir",
+        "Mana Draught",
+        "Mana Potion",
+        "Mana Elixir",
+        "Spirit Draught",
+        "Spirit Potion",
+        "Spirit Elixir",
+    }
+    assert needed_items.issubset({i.name for i in snap.items.items})
+    # quickbar placeholders parsed (16 slots in fixture, empty names)
+    assert len(snap.items.quickbar) == 16
+    assert all(q.name == "" for q in snap.items.quickbar)
+
+    # warnings should be empty for a complete page
+    assert snap.warnings == []
+
+    # serialization helpers
+    d = snap.as_dict()
+    assert isinstance(d, dict) and "player" in d and "abilities" in d
+    js = snap.to_json()
+    import json as _json
+
+    obj = _json.loads(js)
+    assert isinstance(obj, dict) and obj.get("items", {}).get("items")
 
 
 def test_parse_fixture_1():
