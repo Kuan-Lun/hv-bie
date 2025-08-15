@@ -15,4 +15,4 @@ snap = parse_snapshot(html)
 print(snap.player.hp_percent)
 ```
 
-See `SRS.md` for detailed requirements and data model.
+See [`SRS.md`](/SRS.md) for detailed requirements and data model.
