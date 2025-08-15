@@ -1,7 +1,7 @@
 # HV-BIE 軟體需求規格（SRS）
 
 * **產品名稱：** HV Battle Intelligence Extractor（HV-BIE）
-* **版本：** v0.2
+* **版本：** v0.3
 * **依循標準：** 依循 ISO/IEC/IEEE 29148:2018 之結構與精神
 
 ---
@@ -234,6 +234,7 @@
 
   * `slot: str | int`
   * `name: str`
+  * `available: bool`
 
 * `QuickSlot`
 
