@@ -161,3 +161,24 @@ def test_parse_fixture_1():
 
     # monster buffs parsed
     assert any(any(b.name for b in m.buffs) for m in snap.monsters)
+
+
+def test_parse_fixture_4():
+    html = read_fixture("The HentaiVerse4.htm")
+    snap = parse_snapshot(html)
+
+    assert "Spirit Gem" in snap.items.items
+    spirit_gem = snap.items.items["Spirit Gem"]
+    assert spirit_gem.slot == "p"
+    assert spirit_gem.available == True
+
+
+def test_parse_fixture_5():
+    html = read_fixture("The HentaiVerse5.htm")
+    snap = parse_snapshot(html)
+
+    assert "Scroll of the Avatar" in snap.items.items
+    avatar_scroll = snap.items.items["Scroll of the Avatar"]
+    assert avatar_scroll.slot == "s1"
+    assert avatar_scroll.available == True
+    assert snap.items.items["Scroll of the Gods"].available == False
