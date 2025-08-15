@@ -72,9 +72,9 @@ def test_parse_fixture_0():
 
     # monsters
     assert len(snap.monsters) == 2
-    names = {m.name for m in snap.monsters}
+    names = {m.name for m in snap.monsters.values()}
     # first monster name exists and is parsed (from title)
-    monster0 = snap.monsters[0]
+    monster0 = snap.monsters[1]
     assert "Touch" in names
     assert monster0.alive is True
     assert len(monster0.buffs) == 0
@@ -85,7 +85,7 @@ def test_parse_fixture_0():
     assert monster0.slot_index == 1
     assert monster0.system_monster_type is None
     # second monster name exists and is parsed (from title)
-    monster1 = snap.monsters[1]
+    monster1 = snap.monsters[2]
     assert "Peerlesssss2 Oak Staff" in names
     assert monster1.alive is True
     assert len(monster1.buffs) == 0
@@ -96,7 +96,7 @@ def test_parse_fixture_0():
     assert monster1.slot_index == 2
     assert monster1.system_monster_type is None
     # all monsters have valid percentages when alive
-    for m in snap.monsters:
+    for m in snap.monsters.values():
         if m.alive:
             assert 0.0 <= m.hp_percent <= 100.0
             assert 0.0 <= m.mp_percent <= 100.0
@@ -157,10 +157,10 @@ def test_parse_fixture_1():
     assert "Spirit Stance" in names
 
     # system monster present (heuristic sets Rare for the one with style)
-    assert any(m.system_monster_type for m in snap.monsters)
+    assert any(m.system_monster_type for m in snap.monsters.values())
 
     # monster buffs parsed
-    assert any(any(b.name for b in m.buffs) for m in snap.monsters)
+    assert any(any(b.name for b in m.buffs) for m in snap.monsters.values())
 
 
 def test_parse_fixture_4():

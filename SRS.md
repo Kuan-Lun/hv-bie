@@ -172,7 +172,7 @@
 
   * `player: PlayerState`
   * `abilities: AbilitiesState`
-  * `monsters: list[Monster]`
+  * `monsters: dict[int, Monster]`（以 slot_index 為鍵）
   * `log: CombatLog`
   * `items: ItemsState`
   * `warnings: list[str]`
@@ -280,7 +280,7 @@ def parse_snapshot(html: str) -> BattleSnapshot: ...
 | FR-1 | `PlayerState.hp_* / mp_* / sp_* / overcharge_value` | `test_parse_vitals.py`         |
 | FR-2 | `PlayerState.buffs{}`                               | `test_parse_buffs.py`          |
 | FR-3 | `AbilitiesState.skills/spells (dict[str, Ability])` | `test_parse_abilities.py`      |
-| FR-4 | `monsters[]`（含 system\_monster\_type）               | `test_parse_monsters.py`       |
+| FR-4 | `monsters{slot_index: Monster}`（含 system\_monster\_type） | `test_parse_monsters.py`       |
 | FR-5 | `CombatLog.*`                                       | `test_parse_log.py`            |
 | FR-6 | `ItemsState.*`                                      | `test_parse_items.py`          |
 | FR-7 | `BattleSnapshot`                                    | `test_snapshot_integration.py` |

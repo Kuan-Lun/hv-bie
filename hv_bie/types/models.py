@@ -82,7 +82,7 @@ class ItemsState:
 class BattleSnapshot:
     player: PlayerState
     abilities: AbilitiesState
-    monsters: list[Monster]
+    monsters: dict[int, Monster]
     log: CombatLog
     items: ItemsState
     warnings: list[str] = field(default_factory=list)

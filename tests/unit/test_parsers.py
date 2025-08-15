@@ -40,8 +40,8 @@ def test_monsters_and_buffs():
     warnings: list[str] = []
     ms = parse_monsters(s1, warnings)
     assert len(ms) >= 3
-    assert any(m.system_monster_type is not None for m in ms)
-    assert any(m.buffs for m in ms)
+    assert any(m.system_monster_type is not None for m in ms.values())
+    assert any(m.buffs for m in ms.values())
 
 
 def test_log_and_items():

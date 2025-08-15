@@ -210,13 +210,13 @@ def parse_abilities(soup: BeautifulSoup, warnings: list[str]) -> AbilitiesState:
     return AbilitiesState(skills=skills, spells=spells)
 
 
-def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> list[Monster]:
+def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monster]:
     pane = soup.find("div", id="pane_monster")
     if not (pane and hasattr(pane, "find_all")):
         warnings.append("pane_monster not found")
-        return []
+        return {}
 
-    monsters: list[Monster] = []
+    monsters: dict[int, Monster] = {}
 
     for mdiv in pane.find_all("div", id=re.compile(r"mkey_\d+")):
         m_id_m = re.search(r"mkey_(\d+)", mdiv.get("id", ""))
@@ -281,17 +281,15 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> list[Monster]:
                         Buff(name=bname, remaining_turns=rem, is_permanent=is_perm)
                     )
 
-        monsters.append(
-            Monster(
-                slot_index=idx,
-                name=name,
-                alive=(hp != -1.0),
-                system_monster_type=system_type,
-                hp_percent=hp if hp >= 0 else 0.0,
-                mp_percent=mp if mp >= 0 else 0.0,
-                sp_percent=sp if sp >= 0 else 0.0,
-                buffs=m_buffs,
-            )
+        monsters[idx] = Monster(
+            slot_index=idx,
+            name=name,
+            alive=(hp != -1.0),
+            system_monster_type=system_type,
+            hp_percent=hp if hp >= 0 else 0.0,
+            mp_percent=mp if mp >= 0 else 0.0,
+            sp_percent=sp if sp >= 0 else 0.0,
+            buffs=m_buffs,
         )
 
     return monsters
