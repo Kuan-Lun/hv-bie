@@ -109,7 +109,7 @@ def test_parse_fixture_0():
     assert snap.log.total_round == 85
 
     # items
-    assert any(i.name == "Health Draught" for i in snap.items.items)
+    assert "Health Draught" in snap.items.items
     needed_items = {
         "Health Draught",
         "Health Potion",
@@ -121,7 +121,7 @@ def test_parse_fixture_0():
         "Spirit Potion",
         "Spirit Elixir",
     }
-    assert needed_items.issubset({i.name for i in snap.items.items})
+    assert needed_items.issubset(set(snap.items.items.keys()))
     # quickbar placeholders parsed (16 slots in fixture, empty names)
     assert len(snap.items.quickbar) == 16
     assert all(q.name == "" for q in snap.items.quickbar)

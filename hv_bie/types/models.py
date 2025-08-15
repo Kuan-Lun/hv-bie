@@ -72,7 +72,7 @@ class QuickSlot:
 
 @dataclass
 class ItemsState:
-    items: list[Item] = field(default_factory=list)
+    items: dict[str, Item] = field(default_factory=dict)
     quickbar: list[QuickSlot] = field(default_factory=list)
 
 

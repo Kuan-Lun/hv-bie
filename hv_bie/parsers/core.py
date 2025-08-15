@@ -317,7 +317,7 @@ def parse_log(soup: BeautifulSoup, warnings: list[str]) -> CombatLog:
 
 
 def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
-    items: list[Item] = []
+    items: dict[str, Item] = {}
     quick: list[QuickSlot] = []
 
     pane_item = soup.find("div", id="pane_item")
@@ -332,12 +332,11 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
                 else ""
             )
             if name:
-                items.append(
-                    Item(
-                        slot=slot_text if not slot_text.isdigit() else int(slot_text),
-                        name=name,
-                    )
+                item = Item(
+                    slot=slot_text if not slot_text.isdigit() else int(slot_text),
+                    name=name,
                 )
+                items[name] = item
     else:
         warnings.append("pane_item not found")
 
