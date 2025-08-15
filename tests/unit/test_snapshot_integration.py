@@ -62,7 +62,16 @@ def test_parse_fixture_0():
     # monsters
     assert len(snap.monsters) == 2
     names = {m.name for m in snap.monsters}
-    assert any("Touch" in n or "Staff" in n for n in names)
+    monster0 = snap.monsters[0]
+    assert "Touch" in names
+    assert monster0.alive is True
+    assert len(monster0.buffs) == 0
+    assert monster0.hp_percent == 100.0
+    assert 34.0 <= monster0.mp_percent <= 35.0
+    assert 11.0 <= monster0.sp_percent <= 12.0
+    assert monster0.name == "Touch"
+    assert monster0.slot_index == 1
+    assert monster0.system_monster_type is None
 
     # log
     assert snap.log.lines[-1] == "You gain the effect Spirit Shield."
