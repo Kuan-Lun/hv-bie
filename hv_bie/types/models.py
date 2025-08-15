@@ -8,7 +8,7 @@ import json
 @dataclass
 class Buff:
     name: str
-    remaining_seconds: Optional[float]
+    remaining_turns: Optional[float]
     is_permanent: bool
 
 
@@ -36,7 +36,8 @@ class PlayerState:
     sp_percent: float = 0.0
     sp_value: int = 0
     overcharge_value: int = 0
-    buffs: list[Buff] = field(default_factory=list)
+    # Buffs keyed by buff name
+    buffs: dict[str, Buff] = field(default_factory=dict)
 
 
 @dataclass
