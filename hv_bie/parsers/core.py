@@ -322,21 +322,48 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
 
     pane_item = soup.find("div", id="pane_item")
     if pane_item and hasattr(pane_item, "find_all"):
-        for d in pane_item.find_all("div", id=re.compile(r"ikey_.*")):
-            slot_text = d.get("id", "").replace("ikey_", "")
-            # name inside nested <div class="fc2 fal fcb"><div>Name</div></div>
-            name_div = d.find("div", class_="fc2 fal fcb")
-            name = (
-                name_div.find("div").get_text(strip=True)
-                if name_div and name_div.find("div")
-                else ""
-            )
-            if name:
-                item = Item(
-                    slot=slot_text if not slot_text.isdigit() else int(slot_text),
-                    name=name,
-                )
-                items[name] = item
+        # Find all bti1 containers that contain items
+        for bti_container in pane_item.find_all("div", class_="bti1"):
+            # Get slot from bti2 div
+            slot_div = bti_container.find("div", class_="bti2")
+            slot_text = "unknown"
+            if slot_div:
+                slot_text = slot_div.get_text(strip=True).lower()
+
+            # Look for item in bti3 div
+            bti3 = bti_container.find("div", class_="bti3")
+            if not bti3:
+                continue
+
+            # Check for available items (with onclick)
+            available_item = bti3.find("div", onclick=True)
+            if available_item:
+                name_div = available_item.find("div", class_="fc2 fal fcb")
+                if name_div and name_div.find("div"):
+                    name = name_div.find("div").get_text(strip=True)
+                    if name:
+                        item = Item(
+                            slot=(
+                                slot_text if not slot_text.isdigit() else int(slot_text)
+                            ),
+                            name=name,
+                            available=True,
+                        )
+                        items[name] = item
+            else:
+                # Check for unavailable items (with fcg class)
+                unavailable_div = bti3.find("div", class_="fc2 fal fcg")
+                if unavailable_div and unavailable_div.find("div"):
+                    name = unavailable_div.find("div").get_text(strip=True)
+                    if name:
+                        item = Item(
+                            slot=(
+                                slot_text if not slot_text.isdigit() else int(slot_text)
+                            ),
+                            name=name,
+                            available=False,
+                        )
+                        items[name] = item
     else:
         warnings.append("pane_item not found")
 
