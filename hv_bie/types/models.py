@@ -62,6 +62,7 @@ class CombatLog:
 class Item:
     slot: str | int
     name: str
+    available: bool
 
 
 @dataclass
