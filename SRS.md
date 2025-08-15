@@ -187,12 +187,12 @@
   * `sp_percent: float`
   * `sp_value: int`
   * `overcharge_value: int`
-  * `buffs: list[Buff]`
+  * `buffs: dict[str, Buff]`（以 Buff 名稱為鍵）
 
 * `Buff`
 
   * `name: str`
-  * `remaining_seconds: float | None`
+  * `remaining_turns: float | None`
   * `is_permanent: bool`
 
 * `AbilitiesState`
@@ -278,7 +278,7 @@ def parse_snapshot(html: str) -> BattleSnapshot: ...
 | 需求   | 對應輸出欄位                                              | 測試                             |
 | ---- | --------------------------------------------------- | ------------------------------ |
 | FR-1 | `PlayerState.hp_* / mp_* / sp_* / overcharge_value` | `test_parse_vitals.py`         |
-| FR-2 | `PlayerState.buffs[]`                               | `test_parse_buffs.py`          |
+| FR-2 | `PlayerState.buffs{}`                               | `test_parse_buffs.py`          |
 | FR-3 | `AbilitiesState.skills/spells (dict[str, Ability])` | `test_parse_abilities.py`      |
 | FR-4 | `monsters[]`（含 system\_monster\_type）               | `test_parse_monsters.py`       |
 | FR-5 | `CombatLog.*`                                       | `test_parse_log.py`            |
