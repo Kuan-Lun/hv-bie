@@ -1,7 +1,7 @@
 # HV-BIE 軟體需求規格（SRS）
 
 * **產品名稱：** HV Battle Intelligence Extractor（HV-BIE）
-* **版本：** v0.1
+* **版本：** v0.2
 * **依循標準：** 依循 ISO/IEC/IEEE 29148:2018 之結構與精神
 
 ---
@@ -197,16 +197,16 @@
 
 * `AbilitiesState`
 
-  * `skills: list[Ability]`
-  * `spells: list[Ability]`
+  * `skills: dict[str, Ability]`（以技能「顯示名稱」為鍵）
+  * `spells: dict[str, Ability]`（以法術「顯示名稱」為鍵）
 
 * `Ability`
 
   * `name: str`
   * `available: bool`
-  * `cost: float | None`
+  * `cost: int`
   * `cost_type: str | None`
-  * `cooldown_seconds: float | None`
+  * `cooldown_turns: float`
 
 * `Monster`
 
@@ -278,7 +278,7 @@ def parse_snapshot(html: str) -> BattleSnapshot: ...
 | ---- | --------------------------------------------------- | ------------------------------ |
 | FR-1 | `PlayerState.hp_* / mp_* / sp_* / overcharge_value` | `test_parse_vitals.py`         |
 | FR-2 | `PlayerState.buffs[]`                               | `test_parse_buffs.py`          |
-| FR-3 | `AbilitiesState.skills[]/spells[]`                  | `test_parse_abilities.py`      |
+| FR-3 | `AbilitiesState.skills/spells (dict[str, Ability])` | `test_parse_abilities.py`      |
 | FR-4 | `monsters[]`（含 system\_monster\_type）               | `test_parse_monsters.py`       |
 | FR-5 | `CombatLog.*`                                       | `test_parse_log.py`            |
 | FR-6 | `ItemsState.*`                                      | `test_parse_items.py`          |
