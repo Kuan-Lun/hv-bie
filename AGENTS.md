@@ -41,6 +41,18 @@ Document AI agent interactions, configurations, and best practices for maintaini
 - 依賴：`beautifulsoup4`（bs4）
 - 交付：可發佈至 PyPI 的第三方套件
 
+### 執行環境與虛擬環境約定（跨平台）
+
+- 一律使用本庫虛擬環境（.venv）並優先採用「python -m …」形式，避免 PATH 汙染。
+- 推薦兩種方式：
+  1. 已啟用虛擬環境時（任何殼層）：
+  - 執行測試：`python -m pytest -q`
+  - 安裝套件：`python -m pip install -U <package>`
+  1. 未啟用虛擬環境時，直接呼叫該環境的解譯器：
+  - POSIX：`./.venv/bin/python -m pytest -q`、`./.venv/bin/python -m pip install -U <package>`
+  - Windows：`.\\.venv\\Scripts\\python.exe -m pytest -q`、`.\\.venv\\Scripts\\python.exe -m pip install -U <package>`
+- 請避免直接呼叫 `pytest` 或 `pip`，以降低誤用全域環境風險。
+
 ### 語言與訊息規範
 
 - 使用者面向訊息與 API 文件：英文

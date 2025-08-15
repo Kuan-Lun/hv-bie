@@ -106,6 +106,24 @@ def test_snapshot_integration_basic(hv_html_loader):
 - 測試需具等冪性，避免使用全域可變狀態
 - 如採用 coverage，維持關鍵解析路徑覆蓋
 
+## 執行方式與虛擬環境（跨平台）
+
+為避免使用到全域 Python，請使用專案虛擬環境啟動 pytest：
+
+1. 已啟用虛擬環境時（任何殼層）
+   - 安裝 pytest（首次或缺少時）：`python -m pip install -U pytest`
+   - 執行測試：`python -m pytest -q`
+
+1. 未啟用虛擬環境時（直接指定解譯器）
+   - POSIX：
+     - 安裝：`./.venv/bin/python -m pip install -U pytest`
+     - 測試：`./.venv/bin/python -m pytest -q`
+   - Windows：
+     - 安裝：`.\\.venv\\Scripts\\python.exe -m pip install -U pytest`
+     - 測試：`.\\.venv\\Scripts\\python.exe -m pytest -q`
+
+請避免直接呼叫 `pytest` 或 `pip`，以免誤用全域環境。
+
 ## 特殊注意事項
 
 - 不進行任何對目標網站的請求；所有測試以本地樣本 HTML 為主
