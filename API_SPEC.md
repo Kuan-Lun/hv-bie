@@ -87,7 +87,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 
 - 欄位
   - `name: str`
-  - `remaining_turns: float | None`（秒/回合等數值；若為自動施放/永久則為 `None` 並搭配 `is_permanent=True`）
+  - `remaining_turns: float`（秒/回合等數值；若為自動施放/永久則以 `float('inf')` 表示，並搭配 `is_permanent=True`）
   - `is_permanent: bool`
 
 ### AbilitiesState
