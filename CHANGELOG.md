@@ -1,10 +1,28 @@
 # Changelog
 
+<!-- markdownlint-disable MD024 -->
+
 All notable changes to this project will be documented in this file.
 
 The format is based on Semantic Versioning. Keep entries concise and tied to actual changes.
 
 ## [Unreleased]
+
+## [0.3.2] - 2025-08-16
+
+### Breaking Changes
+
+- Change `Buff.remaining_turns` type from int to float; permanent durations now map to `float('inf')` (parsers and tests updated). If you relied on ints, adjust code to handle `math.inf` for permanence and floats for arithmetic.
+
+### New Features
+
+- Represent permanent buff durations as infinity to enable consistent duration math and comparisons across the API.
+
+### Documentation
+
+- Align API spec to reflect `Buff.remaining_turns: float` with `inf` for permanent
+- Update SRS to v0.7 documenting the change
+- Clarify git workflow docs for CHANGELOG update flow
 
 ## [0.3.1] - 2025-08-16
 
@@ -38,5 +56,6 @@ The format is based on Semantic Versioning. Keep entries concise and tied to act
 
 - Project overview and agent workflows updated
 
-[Unreleased]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.2...HEAD
+[0.3.2]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.0...v0.3.1
