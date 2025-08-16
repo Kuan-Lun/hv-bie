@@ -117,7 +117,7 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
         and "spirit_a.png" in (spirit.get("src") or "")
     ):
         out["Spirit Stance"] = Buff(
-            name="Spirit Stance", remaining_turns=None, is_permanent=True
+            name="Spirit Stance", remaining_turns=float("inf"), is_permanent=True
         )
 
     pane = soup.find("div", id="pane_effects")
@@ -134,19 +134,22 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
         name = m.group(1)
         dur_raw = m.group(2).strip().strip("'\"")
         is_perm = False
-        rem: Optional[float] = None
         if dur_raw in ("autocast", "permanent"):
             is_perm = True
-            rem = None
+            rem = float("inf")
         else:
             try:
                 rem = float(dur_raw)
             except ValueError:
-                rem = None
+                rem = 0.0
         # normalize some names
         norm = _ICON_MAP.get(name, name)
         # About-to-expire opacity indicates ticking, but we keep numeric seconds as-is
-        out[norm] = Buff(name=norm, remaining_turns=rem, is_permanent=is_perm)
+        out[norm] = Buff(
+            name=norm,
+            remaining_turns=rem,
+            is_permanent=is_perm,
+        )
 
     return out
 
@@ -268,17 +271,21 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
                     bname = mm.group(1)
                     dur_raw = mm.group(2).strip().strip("'\"")
                     is_perm = False
-                    rem: Optional[float] = None
+                    rem: Optional[float] = (
+                        None  # parsed numeric seconds; inf for permanent
+                    )
                     if dur_raw in ("autocast", "permanent"):
                         is_perm = True
-                        rem = None
+                        rem = float("inf")
                     else:
                         try:
                             rem = float(dur_raw)
                         except ValueError:
-                            rem = None
+                            rem = float("inf") if is_perm else 0.0
                     m_buffs[bname] = Buff(
-                        name=bname, remaining_turns=rem, is_permanent=is_perm
+                        name=bname,
+                        remaining_turns=rem if rem is not None else 0.0,
+                        is_permanent=is_perm,
                     )
 
         monsters[idx] = Monster(

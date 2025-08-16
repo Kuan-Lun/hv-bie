@@ -216,7 +216,8 @@ def test_parse_fixture_2():
     assert expect_some.issubset(set(pbuf.keys()))
     # has at least one numeric-duration buff
     assert any(
-        (b.remaining_turns is None) or (b.remaining_turns >= 0) for b in pbuf.values()
+        (b.remaining_turns >= 0) or (b.remaining_turns == float("inf"))
+        for b in pbuf.values()
     )
 
     # abilities

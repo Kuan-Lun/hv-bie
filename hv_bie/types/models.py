@@ -8,7 +8,7 @@ import json
 @dataclass
 class Buff:
     name: str
-    remaining_turns: Optional[float]
+    remaining_turns: float
     is_permanent: bool
 
 
