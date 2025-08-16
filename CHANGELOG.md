@@ -6,6 +6,13 @@ The format is based on Semantic Versioning. Keep entries concise and tied to act
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-08-16
+
+### Documentation
+
+- Clarify PyPI distribution name vs import name in README
+- Update SRS document version to v0.6 and specify package names
+
 ## [0.3.0] - 2025-08-16
 
 ### Added
@@ -31,4 +38,5 @@ The format is based on Semantic Versioning. Keep entries concise and tied to act
 
 - Project overview and agent workflows updated
 
-[Unreleased]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/Kuan-Lun/hv-bie/compare/v0.3.0...v0.3.1
