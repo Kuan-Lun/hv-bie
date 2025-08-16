@@ -27,13 +27,21 @@
 
 2. 變更日誌更新（CHANGELOG）：
 
-    - 編輯/新增 `CHANGELOG.md`，以實際提交與程式碼變更撰寫如下章節：
-        - Breaking Changes
-        - New Features
-        - Bug Fixes
-        - Refactoring/Improvements
-        - Documentation
-    - 提交訊息：`docs(changelog): update for {new}`
+     - 編輯/新增 `CHANGELOG.md`，依下列步驟產出內容：
+          1. 快速瀏覽近期提交以掌握變更範圍：
+              - 檢視最近 N 筆摘要：`git log -n 50 --oneline`（可調整 50 為所需數量）
+              - 以上一版本為基準比較：`git log --oneline v{上一版本}..HEAD`
+          2. 萃取對使用者有影響或可見的變更，按類別歸納並撰寫條目：
+              - Breaking Changes
+              - New Features
+              - Bug Fixes
+              - Refactoring/Improvements
+              - Documentation
+          3. 條目書寫原則：
+              - 以簡短祈使句描述（面向使用者價值），必要時附 commit 短雜湊或 PR/Issue 編號（如 `(#123)` 或 ``abcd123``）。
+              - 若為破壞性變更，補充遷移指引或對應替代方案。
+          4. 在 `CHANGELOG.md` 新增版本區塊與日期，例如：`## [X.Y.Z] - YYYY-MM-DD`，並依上述類別分節列點。
+     - 提交訊息：`docs(changelog): update for {new}`
 
 完成後建立並推送標籤（建議使用附註標籤 annotated tag）：
 `git tag -a v{新版本} -m "Release: v{新版本}"`，`git push origin v{新版本}`。
