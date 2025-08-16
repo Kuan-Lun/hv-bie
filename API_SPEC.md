@@ -222,7 +222,6 @@ kind = get_system_monster_type(name)  # -> 'Rare' | 'Legendary' | 'Ultimate' | N
 ## 相容性與穩定性
 
 - 資料模型鍵名與型別視為穩定契約；維護時需保持向後相容（新增欄位需提供預設值）。
-- 版本對應：`pyproject.toml` 中目前版本為 `0.2.0`（未來更新請於此處同步說明）。
 - 效能目標與更多非功能性需求，請參閱 [`SRS.md`](/SRS.md)（例：NFR-P1 效能、NFR-R1 容錯）。
 
 ---
@@ -241,9 +240,3 @@ kind = get_system_monster_type(name)  # -> 'Rare' | 'Legendary' | 'Ultimate' | N
   - 功能性需求 FR-1 ~ FR-7（玩家、Buff、技能/法術、怪物、戰報、道具、整體快照）。
   - 非功能性需求 NFR（容錯、效能、可維護性、可攜性、安全性）。
 - 若需更完整的業務語意、名詞定義與風險評估，請直接參考 [`SRS.md`](/SRS.md) 對應章節。
-
----
-
-## 變更紀錄（摘要）
-
-- 初版（對應程式碼 v0.2.0）：建立 `parse_snapshot` 單一入口；資料模型如上；`warnings` 為容錯訊息匯總；戰報行列提供由舊到新的順序。
