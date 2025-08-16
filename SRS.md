@@ -1,7 +1,7 @@
 # HV-BIE 軟體需求規格（SRS）
 
 * **產品名稱：** HV Battle Intelligence Extractor（HV-BIE）
-* **版本：** v0.5
+* **版本：** v0.6
 * **依循標準：** 依循 ISO/IEC/IEEE 29148:2018 之結構與精神
 
 ---
@@ -297,7 +297,7 @@ def parse_snapshot(html: str) -> BattleSnapshot: ...
 
 ## 14. 交付件
 
-* **PyPI 套件**（`hv_bie`）：
+* **PyPI 套件**（發佈名稱：`hv-bie`；匯入名稱：`hv_bie`）：
 
   * `types/`：dataclasses 定義
   * `parsers/`：各區塊解析器
