@@ -1,7 +1,7 @@
 # HV-BIE 軟體需求規格（SRS）
 
 * **產品名稱：** HV Battle Intelligence Extractor（HV-BIE）
-* **版本：** v0.6
+* **版本：** v0.7
 * **依循標準：** 依循 ISO/IEC/IEEE 29148:2018 之結構與精神
 
 ---
@@ -192,7 +192,7 @@
 * `Buff`
 
   * `name: str`
-  * `remaining_turns: float | None`
+  * `remaining_turns: float`  # 對於自動施放/永久效果以 `float('inf')` 表示無限
   * `is_permanent: bool`
 
 * `AbilitiesState`
