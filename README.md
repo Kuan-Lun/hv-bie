@@ -5,6 +5,7 @@
 - 支援環境：Python 3.13+
 - 主要相依：beautifulsoup4>=4.13.4
 - 套件名稱：`hv_bie`
+- 發佈名稱（PyPI）：`hv-bie`；匯入名稱（Python）：`hv_bie`
 
 更多介面與資料模型細節，請參考：
 
@@ -34,7 +35,7 @@
 
 ```powershell
 # 從 PyPI 安裝（若已發布）
-pip install hv_bie
+pip install hv-bie
 
 # 或在專案根目錄從原始碼安裝
 pip install -e .
