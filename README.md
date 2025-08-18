@@ -165,7 +165,7 @@ python -m pytest -q
 
 ## 版本與文件
 
-- 目前版本：`0.3.1`（見 `pyproject.toml`）
+- 目前版本：`0.3.2`（見 `pyproject.toml`）
 - 變更紀錄：[`CHANGELOG.md`](/CHANGELOG.md)
 - 規格文件：[`API_SPEC.md`](/API_SPEC.md)、[`SRS.md`](/SRS.md)
 
