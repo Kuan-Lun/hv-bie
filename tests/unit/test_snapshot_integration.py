@@ -40,7 +40,7 @@ def test_parse_fixture_0():
     assert "Flee" in skills_names
     flee_skill = snap.abilities.skills["Flee"]
     assert flee_skill.available is True
-    assert flee_skill.cost_type == None
+    assert flee_skill.cost_type is None
     assert flee_skill.cost == 0
     assert flee_skill.cooldown_turns == 0
     assert "Shield Bash" in skills_names
@@ -301,7 +301,7 @@ def test_parse_fixture_4():
     assert "Spirit Gem" in snap.items.items
     spirit_gem = snap.items.items["Spirit Gem"]
     assert spirit_gem.slot == "p"
-    assert spirit_gem.available == True
+    assert spirit_gem.available
 
     # vitals
     assert 98.0 <= snap.player.hp_percent <= 100.0
@@ -377,8 +377,8 @@ def test_parse_fixture_5():
     assert "Scroll of the Avatar" in snap.items.items
     avatar_scroll = snap.items.items["Scroll of the Avatar"]
     assert avatar_scroll.slot == "s1"
-    assert avatar_scroll.available == True
-    assert snap.items.items["Scroll of the Gods"].available == False
+    assert avatar_scroll.available
+    assert not snap.items.items["Scroll of the Gods"].available
 
     # vitals
     assert 98.0 <= snap.player.hp_percent <= 100.0
