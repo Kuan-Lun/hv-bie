@@ -1,19 +1,19 @@
 from __future__ import annotations
 
 import re
-from typing import Optional
+from typing import Any, Optional
+
 from bs4 import BeautifulSoup
-from typing import Any
 
 from ..types.models import (
-    PlayerState,
-    Buff,
     AbilitiesState,
     Ability,
-    Monster,
+    Buff,
     CombatLog,
-    ItemsState,
     Item,
+    ItemsState,
+    Monster,
+    PlayerState,
     QuickSlot,
 )
 from ..types.system_monsters import get_system_monster_type
