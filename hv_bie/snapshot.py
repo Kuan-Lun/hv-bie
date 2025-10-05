@@ -2,15 +2,15 @@ from __future__ import annotations
 
 from bs4 import BeautifulSoup
 
-from .types.models import BattleSnapshot
 from .parsers.core import (
-    parse_player_vitals,
-    parse_player_buffs,
     parse_abilities,
-    parse_monsters,
-    parse_log,
     parse_items,
+    parse_log,
+    parse_monsters,
+    parse_player_buffs,
+    parse_player_vitals,
 )
+from .types.models import BattleSnapshot
 
 
 def parse_snapshot(html: str) -> BattleSnapshot:
