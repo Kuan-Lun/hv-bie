@@ -127,7 +127,7 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
     for img in pane.find_all("img"):
         om = img.get("onmouseover", "")
         m = re.search(
-            r"set_infopane_effect\('([^']+)'\s*,\s*'[^']*'\s*,\s*([^\)]+)\)", om
+            r"set_infopane_effect\('([^']+)'\s*,\s*'[^']*'\s*,\s*([^\)]+)\)", str(om)
         )
         if not m:
             continue
@@ -222,7 +222,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
     monsters: dict[int, Monster] = {}
 
     for mdiv in pane.find_all("div", id=re.compile(r"mkey_\d+")):
-        m_id_m = re.search(r"mkey_(\d+)", mdiv.get("id", ""))
+        m_id_m = re.search(r"mkey_(\d+)", str(mdiv.get("id", "")))
         idx = int(m_id_m.group(1)) if m_id_m else -1
         # System monster typing: prefer name-based mapping; fallback to style heuristic
         system_type: Optional[str] = None
@@ -232,8 +232,9 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
         name = ""
         if name_div:
             title = name_div.find("div", class_="fc2 fal fcb")
-            if title and title.find("div"):
-                name = title.find("div").get_text(strip=True)
+            inner_div = title.find("div") if title else None
+            if inner_div:
+                name = inner_div.get_text(strip=True)
         # mapping by name (if available)
         system_type = get_system_monster_type(name)
         # fallback heuristic by styled border/background
@@ -245,7 +246,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
             bars = mdiv.find_all("img", src=re.compile(src_pat))
             for bar in bars:
                 if alt is None or bar.get("alt") == alt:
-                    m = re.search(r"width:(\d+)px", bar.get("style", ""))
+                    m = re.search(r"width:(\d+)px", str(bar.get("style", "")))
                     if m:
                         return max(
                             0.0,
@@ -265,7 +266,8 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
             for img in bc.find_all("img"):
                 om = img.get("onmouseover", "")
                 mm = re.search(
-                    r"set_infopane_effect\('([^']+)'\s*,\s*'[^']*'\s*,\s*([^\)]+)\)", om
+                    r"set_infopane_effect\('([^']+)'\s*,\s*'[^']*'\s*,\s*([^\)]+)\)",
+                    str(om),
                 )
                 if mm:
                     bname = mm.group(1)
@@ -344,8 +346,9 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
             available_item = bti3.find("div", onclick=True)
             if available_item:
                 name_div = available_item.find("div", class_="fc2 fal fcb")
-                if name_div and name_div.find("div"):
-                    name = name_div.find("div").get_text(strip=True)
+                inner_div = name_div.find("div") if name_div else None
+                if inner_div:
+                    name = inner_div.get_text(strip=True)
                     if name:
                         item = Item(
                             slot=(
@@ -358,8 +361,9 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
             else:
                 # Check for unavailable items (with fcg class)
                 unavailable_div = bti3.find("div", class_="fc2 fal fcg")
-                if unavailable_div and unavailable_div.find("div"):
-                    name = unavailable_div.find("div").get_text(strip=True)
+                inner_div = unavailable_div.find("div") if unavailable_div else None
+                if inner_div:
+                    name = inner_div.get_text(strip=True)
                     if name:
                         item = Item(
                             slot=(
