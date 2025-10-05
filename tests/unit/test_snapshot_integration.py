@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from hv_bie import parse_snapshot
 
 FIX = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "hv"

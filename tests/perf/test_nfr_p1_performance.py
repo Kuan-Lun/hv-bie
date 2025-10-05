@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from pathlib import Path
-from time import perf_counter
-from statistics import fmean
 import os
+from pathlib import Path
+from statistics import fmean
+from time import perf_counter
 
 from hv_bie import parse_snapshot
-
 
 # Locate fixtures and preload HTML strings so file I/O is excluded from timing
 FIX = Path(__file__).resolve().parents[1] / "fixtures" / "hv"
