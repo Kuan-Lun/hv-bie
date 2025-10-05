@@ -24,7 +24,7 @@ Source = "https://github.com/Kuan-Lun/hv-bie"
 Tracker = "https://github.com/Kuan-Lun/hv-bie/issues"
 
 [project.optional-dependencies]
-dev = ["ruff", "mypy"]
+dev = ["ruff", "mypy", "pytest"]
 
 [tool.setuptools]
 # Use automatic package discovery (PEP 621 recommended approach)
