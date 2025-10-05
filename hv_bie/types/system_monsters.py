@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Literal, Optional
+
 """
 系統怪物（System Monsters）名稱到稀有度類型的對照表。
 
@@ -13,7 +15,6 @@ from __future__ import annotations
 - 這裡先放範例占位名稱，請依實際需求填入正確清單。
 """
 
-from typing import Literal, Optional
 
 SystemMonsterType = Literal["Rare", "Legendary", "Ultimate"]
 
