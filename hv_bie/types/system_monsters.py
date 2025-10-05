@@ -13,7 +13,7 @@ from __future__ import annotations
 - 這裡先放範例占位名稱，請依實際需求填入正確清單。
 """
 
-from typing import Optional, Literal
+from typing import Literal, Optional
 
 SystemMonsterType = Literal["Rare", "Legendary", "Ultimate"]
 

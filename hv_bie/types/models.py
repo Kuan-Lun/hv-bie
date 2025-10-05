@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
-from typing import Optional
 import json
+from dataclasses import asdict, dataclass, field
+from typing import Optional
 
 
 @dataclass
