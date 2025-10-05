@@ -35,3 +35,12 @@ exclude = ["tests*"]
 [tool.setuptools.package-data]
 # Publish PEP 561 typing marker
 "hv_bie" = ["py.typed"]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+extend-select = ["I"]
