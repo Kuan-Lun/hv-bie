@@ -11,7 +11,7 @@ requires-python = ">=3.13"
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE"]
 authors = [{ name = "Kuan-Lun Wang", email = "polyphonicared@gmail.com" }]
-dependencies = ["beautifulsoup4>=4.13.4"]
+dependencies = ["beautifulsoup4>=4.14.2,<5.0.0"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.13",
@@ -24,7 +24,12 @@ Source = "https://github.com/Kuan-Lun/hv-bie"
 Tracker = "https://github.com/Kuan-Lun/hv-bie/issues"
 
 [project.optional-dependencies]
-dev = ["ruff", "mypy", "pytest"]
+dev = [
+    "ruff>=0.14.3,<1.0.0",
+    "mypy>=1.18.2,<2.0.0",
+    "pytest>=8.4.2,<9.0.0",
+    "black>=23.9.1",
+]
 
 [tool.setuptools]
 # Use automatic package discovery (PEP 621 recommended approach)
@@ -52,4 +57,3 @@ extend-ignore = ["E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["hv_bie"]
-
