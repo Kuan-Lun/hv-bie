@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hv_bie"
-version = "0.3.5"
+version = "0.3.6"
 description = "HV Battle Intelligence Extractor: parse HentaiVerse battle HTML into structured Python dataclasses"
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.9"
@@ -46,7 +46,7 @@ exclude = ["tests*"]
 
 [tool.setuptools.package-data]
 # Publish PEP 561 typing marker
-"hv_bie" = ["py.typed"]
+"hv_bie" = ["**/py.typed"]
 
 [tool.black]
 line-length = 88
