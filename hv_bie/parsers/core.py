@@ -216,6 +216,7 @@ def _parse_ability_div(div) -> Ability:
         cd = third
     return Ability(
         name=name,
+        element_id=div.get("id", ""),
         available=available,
         cost=cost,
         cost_type=cost_type,
@@ -421,6 +422,7 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
                             slot_text if not slot_text.isdigit() else int(slot_text)
                         ),
                         name=name,
+                        element_id=available_item.get("id", ""),
                         available=True,
                     )
                     items[name] = item
@@ -433,6 +435,7 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
                             slot_text if not slot_text.isdigit() else int(slot_text)
                         ),
                         name=name,
+                        element_id="",
                         available=False,
                     )
                     items[name] = item

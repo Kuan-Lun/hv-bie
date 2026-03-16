@@ -10,6 +10,8 @@ from .parsers.core import (
     parse_player_buffs,
     parse_player_vitals,
 )
+from dataclasses import replace
+
 from .types.models import BattleSnapshot
 
 
@@ -20,8 +22,10 @@ def parse_snapshot(html: str) -> BattleSnapshot:
     soup = BeautifulSoup(html, "html.parser")
     warnings: list[str] = []
 
-    player = parse_player_vitals(soup, warnings)
-    player.buffs = parse_player_buffs(soup, warnings)
+    player = replace(
+        parse_player_vitals(soup, warnings),
+        buffs=parse_player_buffs(soup, warnings),
+    )
 
     abilities = parse_abilities(soup, warnings)
     monsters = parse_monsters(soup, warnings)

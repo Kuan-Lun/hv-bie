@@ -55,7 +55,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 
 ## 資料模型契約（Dataclasses）
 
-資料類型定義於 `hv_bie/types/models.py`。下列內容視為「對外契約」：鍵名、型別、語意與允許值範圍皆需維持穩定。
+資料類型定義於 `hv_bie/types/models.py`。所有 dataclass 皆為 `frozen=True`（不可變）。下列內容視為「對外契約」：鍵名、型別、語意與允許值範圍皆需維持穩定。
 
 ### BattleSnapshot
 
@@ -100,6 +100,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 
 - 欄位
   - `name: str`
+  - `element_id: str`（HTML 元素的 `id` 屬性，例如 `"312"`（Regen）、`"2201"`（Shield Bash）；供消費端以 `By.ID` 定位元素）
   - `available: bool`（是否可用）
   - `cost: int`（資源成本；對於 Overcharge 以 25 點/charge 換算到整數 OC 點）
   - `cost_type: str | None`（可能值：`"MP"`、`"Overcharge"`、或 `None`）
@@ -147,6 +148,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 - 欄位
   - `slot: str | int`（可能值：`"p"`、`"s1".."s6"`、或整數槽位）
   - `name: str`
+  - `element_id: str`（HTML 元素的 `id` 屬性，例如 `"ikey_p"`、`"ikey_2"`；不可用道具為空字串 `""`）
   - `available: bool`（是否可用）
 
 ### QuickSlot

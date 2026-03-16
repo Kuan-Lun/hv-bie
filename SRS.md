@@ -54,7 +54,7 @@
 * **執行環境**：Python **3.13+**。
 * **相依第三方套件**：**beautifulsoup4（bs4）**。
 * **輸入形式**：`html: str`。
-* **輸出形式（主）**：Python **資料類別（dataclasses）**；提供 `as_dict()` / `to_json()` 作為**選配**序列化。
+* **輸出形式（主）**：Python **不可變資料類別（frozen dataclasses）**；提供 `as_dict()` / `to_json()` 作為**選配**序列化。
 
 ### 3.2 套件定位
 
@@ -203,6 +203,7 @@
 * `Ability`
 
   * `name: str`
+  * `element_id: str`  # HTML 元素的 id 屬性，供消費端以 By.ID 定位
   * `available: bool`
   * `cost: int`
   * `cost_type: str | None`
@@ -234,6 +235,7 @@
 
   * `slot: str | int`
   * `name: str`
+  * `element_id: str`  # HTML 元素的 id 屬性，不可用道具為空字串
   * `available: bool`
 
 * `QuickSlot`

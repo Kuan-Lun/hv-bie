@@ -5,29 +5,30 @@ from dataclasses import asdict, dataclass, field
 from typing import Optional
 
 
-@dataclass
+@dataclass(frozen=True)
 class Buff:
     name: str
     remaining_turns: float
     is_permanent: bool
 
 
-@dataclass
+@dataclass(frozen=True)
 class Ability:
     name: str
+    element_id: str
     available: bool
     cost: int
     cost_type: Optional[str]
     cooldown_turns: int
 
 
-@dataclass
+@dataclass(frozen=True)
 class AbilitiesState:
     skills: dict[str, Ability] = field(default_factory=dict)
     spells: dict[str, Ability] = field(default_factory=dict)
 
 
-@dataclass
+@dataclass(frozen=True)
 class PlayerState:
     hp_percent: float = 0.0
     hp_value: int = 0
@@ -36,11 +37,10 @@ class PlayerState:
     sp_percent: float = 0.0
     sp_value: int = 0
     overcharge_value: int = 0
-    # Buffs keyed by buff name
     buffs: dict[str, Buff] = field(default_factory=dict)
 
 
-@dataclass
+@dataclass(frozen=True)
 class Monster:
     slot_index: int
     name: str
@@ -52,33 +52,34 @@ class Monster:
     buffs: dict[str, Buff] = field(default_factory=dict)
 
 
-@dataclass
+@dataclass(frozen=True)
 class CombatLog:
     lines: list[str] = field(default_factory=list)
     current_round: Optional[int] = None
     total_round: Optional[int] = None
 
 
-@dataclass
+@dataclass(frozen=True)
 class Item:
     slot: str | int
     name: str
+    element_id: str
     available: bool
 
 
-@dataclass
+@dataclass(frozen=True)
 class QuickSlot:
     slot: str | int
     name: str
 
 
-@dataclass
+@dataclass(frozen=True)
 class ItemsState:
     items: dict[str, Item] = field(default_factory=dict)
     quickbar: list[QuickSlot] = field(default_factory=list)
 
 
-@dataclass
+@dataclass(frozen=True)
 class BattleSnapshot:
     player: PlayerState
     abilities: AbilitiesState
