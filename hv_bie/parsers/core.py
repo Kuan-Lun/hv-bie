@@ -23,6 +23,37 @@ _PLAYER_BAR_FULL_PX = 414
 _MONSTER_BAR_MAX_PX = 120
 _OC_POINTS_PER_CHARGE = 25
 
+# CSS sprite character map (anti-scraping UI variant)
+_SPRITE_MAP: dict[str, str] = {}
+for _c in range(ord("a"), ord("z") + 1):
+    _SPRITE_MAP[f"c3{chr(_c)}"] = chr(_c)
+for _i in range(10):
+    _SPRITE_MAP[f"c2{_i}"] = str(_i)
+_SPRITE_MAP["c39"] = " "
+_SPRITE_MAP["c2g"] = "-"
+
+
+def _decode_sprite_text(container) -> str:
+    """Decode text from CSS sprite divs (e.g. div.c3a div.c3b → 'ab')."""
+    chars = []
+    for div in container.find_all("div", recursive=False):
+        for cls in div.get("class") or []:
+            if cls in _SPRITE_MAP:
+                chars.append(_SPRITE_MAP[cls])
+                break
+    return "".join(chars)
+
+
+def _extract_name(container) -> str:
+    """Extract name from either plain-text or CSS-sprite container."""
+    text = container.get_text(strip=True)
+    if text:
+        return text
+    decoded = _decode_sprite_text(container).strip()
+    if decoded:
+        return decoded.title()
+    return ""
+
 
 def _safe_int(text: Optional[str]) -> int:
     try:
@@ -69,7 +100,7 @@ def parse_player_vitals(soup: BeautifulSoup, warnings: list[str]) -> PlayerState
         # Fixtures show orange width mapped to 0..250 scale
         oc_val = int(round(oc_w / _PLAYER_BAR_FULL_PX * 250))
 
-    dvrhd = pane.find("div", id="dvrhd")
+    dvrhd = pane.find("div", id="dvrhd") or pane.find("div", id="dvrhb")
     dvrm = pane.find("div", id="dvrm")
     dvrs = pane.find("div", id="dvrs")
     dvrc = pane.find("div", id="dvrc")
@@ -155,14 +186,18 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
 
 
 def _parse_ability_div(div) -> Ability:
-    name_div = div.find("div", class_="fc2 fal fcb")
-    name = (
-        name_div.find("div").get_text(strip=True)
-        if name_div and name_div.find("div")
-        else ""
-    )
-    available = "opacity:0.5" not in (div.get("style") or "")
     om = div.get("onmouseover", "")
+    # Extract name from onmouseover (works for both text and sprite UI)
+    name_match = re.search(r"set_infopane_spell\('([^']+)'", str(om))
+    if name_match:
+        name = name_match.group(1)
+    else:
+        # Fallback: text or sprite div
+        name_div = div.find("div", class_="fc2 fal fcb")
+        if not name_div:
+            name_div = div.find("div", class_="fl")
+        name = _extract_name(name_div) if name_div else ""
+    available = "opacity:0.5" not in (div.get("style") or "")
     nums = [int(n) for n in re.findall(r"\b(\d+)\b", om)]
     cost = 0
     cd = 0
@@ -231,10 +266,17 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
         name_div = mdiv.find("div", class_="btm3")
         name = ""
         if name_div:
+            # Text version: div.fc2.fal.fcb
             title = name_div.find("div", class_="fc2 fal fcb")
-            inner_div = title.find("div") if title else None
-            if inner_div:
-                name = inner_div.get_text(strip=True)
+            if title:
+                inner_div = title.find("div")
+                if inner_div:
+                    name = inner_div.get_text(strip=True)
+            # Sprite version fallback: div.fl
+            if not name:
+                sprite_div = name_div.find("div", class_="fl")
+                if sprite_div:
+                    name = _decode_sprite_text(sprite_div).strip().title()
         # mapping by name (if available)
         system_type = get_system_monster_type(name)
         # fallback heuristic by styled border/background
@@ -323,6 +365,26 @@ def parse_log(soup: BeautifulSoup, warnings: list[str]) -> CombatLog:
     return CombatLog(lines=lines[::-1], current_round=current, total_round=total)
 
 
+def _extract_name_from_item_div(container) -> str:
+    """Extract item name from text-version (fc2 fal fcb/fcg) or sprite-version (fl f2b/f2g)."""
+    # Text version
+    for cls in ("fc2 fal fcb", "fc2 fal fcg"):
+        name_div = container.find("div", class_=cls)
+        if name_div:
+            inner = name_div.find("div")
+            if inner:
+                text = inner.get_text(strip=True)
+                if text:
+                    return text
+    # Sprite version
+    sprite_div = container.find("div", class_="fl")
+    if sprite_div:
+        decoded = _decode_sprite_text(sprite_div).strip()
+        if decoded:
+            return decoded.title()
+    return ""
+
+
 def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
     items: dict[str, Item] = {}
     quick: list[QuickSlot] = []
@@ -336,6 +398,13 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
             slot_text = "unknown"
             if slot_div:
                 slot_text = slot_div.get_text(strip=True).lower()
+                # Sprite version fallback
+                if not slot_text:
+                    sprite = slot_div.find("div", class_="fc") or slot_div.find(
+                        "div", class_="fl"
+                    )
+                    if sprite:
+                        slot_text = _decode_sprite_text(sprite).strip().lower()
 
             # Look for item in bti3 div
             bti3 = bti_container.find("div", class_="bti3")
@@ -345,34 +414,28 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
             # Check for available items (with onclick)
             available_item = bti3.find("div", onclick=True)
             if available_item:
-                name_div = available_item.find("div", class_="fc2 fal fcb")
-                inner_div = name_div.find("div") if name_div else None
-                if inner_div:
-                    name = inner_div.get_text(strip=True)
-                    if name:
-                        item = Item(
-                            slot=(
-                                slot_text if not slot_text.isdigit() else int(slot_text)
-                            ),
-                            name=name,
-                            available=True,
-                        )
-                        items[name] = item
+                name = _extract_name_from_item_div(available_item)
+                if name:
+                    item = Item(
+                        slot=(
+                            slot_text if not slot_text.isdigit() else int(slot_text)
+                        ),
+                        name=name,
+                        available=True,
+                    )
+                    items[name] = item
             else:
-                # Check for unavailable items (with fcg class)
-                unavailable_div = bti3.find("div", class_="fc2 fal fcg")
-                inner_div = unavailable_div.find("div") if unavailable_div else None
-                if inner_div:
-                    name = inner_div.get_text(strip=True)
-                    if name:
-                        item = Item(
-                            slot=(
-                                slot_text if not slot_text.isdigit() else int(slot_text)
-                            ),
-                            name=name,
-                            available=False,
-                        )
-                        items[name] = item
+                # Check for unavailable items
+                name = _extract_name_from_item_div(bti3)
+                if name:
+                    item = Item(
+                        slot=(
+                            slot_text if not slot_text.isdigit() else int(slot_text)
+                        ),
+                        name=name,
+                        available=False,
+                    )
+                    items[name] = item
     else:
         warnings.append("pane_item not found")
 

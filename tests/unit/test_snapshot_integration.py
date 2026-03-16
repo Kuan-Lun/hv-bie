@@ -458,3 +458,80 @@ def test_parse_fixture_5():
     assert snap.warnings == []
     _ = snap.as_dict()
     _ = snap.to_json()
+
+
+def test_parse_fixture_sprite():
+    """Test CSS-sprite UI variant (anti-scraping version)."""
+    html = read_fixture("The HentaiVerse6.html")
+    snap = parse_snapshot(html)
+
+    # vitals (sprite version uses dvrhb instead of dvrhd)
+    assert 86.0 <= snap.player.hp_percent <= 87.0
+    assert snap.player.hp_value == 2243
+    assert 48.0 <= snap.player.mp_percent <= 49.0
+    assert snap.player.mp_value == 101
+    assert 52.0 <= snap.player.sp_percent <= 53.0
+    assert snap.player.sp_value == 60
+    assert snap.player.overcharge_value == 115
+
+    # buffs
+    pbuf = snap.player.buffs
+    assert "Spirit Stance" in pbuf
+    assert "Protection" in pbuf and pbuf["Protection"].is_permanent
+    assert "Haste" in pbuf and pbuf["Haste"].is_permanent
+    assert "Regen" in pbuf and pbuf["Regen"].remaining_turns == 16.0
+
+    # abilities: names extracted from onmouseover
+    assert "Flee" in snap.abilities.skills
+    assert "Shield Bash" in snap.abilities.skills
+    sb = snap.abilities.skills["Shield Bash"]
+    assert sb.available is True
+    assert sb.cost_type == "Overcharge" and sb.cost == 25 and sb.cooldown_turns == 10
+
+    assert "Fiery Blast" in snap.abilities.spells
+    assert snap.abilities.spells["Fiery Blast"].cost == 6
+    assert "Cure" in snap.abilities.spells
+    cure = snap.abilities.spells["Cure"]
+    assert cure.cost == 19 and cure.cooldown_turns == 2
+    assert snap.abilities.spells["Absorb"].available is False
+
+    # monsters: names decoded from CSS sprites
+    assert len(snap.monsters) == 6
+    names = {m.name for m in snap.monsters.values()}
+    assert "Saw World New New" in names
+    assert "Sleeping Dragon" in names
+    assert "Blue Slime" in names
+    assert "Scary Ghost" in names
+    # alive/dead
+    assert snap.monsters[1].alive is False  # Saw World New New
+    assert snap.monsters[5].alive is True   # Scary Ghost
+    assert snap.monsters[5].hp_percent == 100.0
+    assert snap.monsters[6].alive is True   # Low-Grade Farmer 153
+    for m in snap.monsters.values():
+        if m.alive:
+            assert 0.0 <= m.hp_percent <= 100.0
+            assert 0.0 <= m.mp_percent <= 100.0
+
+    # items: names decoded from CSS sprites
+    it = snap.items.items
+    assert "Mana Gem" in it and it["Mana Gem"].slot == "p"
+    assert it["Mana Gem"].available
+    assert "Health Potion" in it and it["Health Potion"].available is True
+    assert "Health Draught" in it and it["Health Draught"].available is False
+    assert "Mana Potion" in it and it["Mana Potion"].available is True
+    assert "Mana Draught" in it and it["Mana Draught"].available is False
+    assert "Spirit Potion" in it and it["Spirit Potion"].available is True
+    assert "Spirit Draught" in it and it["Spirit Draught"].available is False
+
+    # log (plain text, works the same)
+    assert snap.log.current_round == 12
+    assert snap.log.total_round == 1000
+    assert snap.log.lines[0].startswith("Initializing Grindfest")
+
+    # quickbar
+    assert len(snap.items.quickbar) == 16
+
+    # no warnings, serializable
+    assert snap.warnings == []
+    _ = snap.as_dict()
+    _ = snap.to_json()
