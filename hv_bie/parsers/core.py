@@ -418,9 +418,7 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
                 name = _extract_name_from_item_div(available_item)
                 if name:
                     item = Item(
-                        slot=(
-                            slot_text if not slot_text.isdigit() else int(slot_text)
-                        ),
+                        slot=(slot_text if not slot_text.isdigit() else int(slot_text)),
                         name=name,
                         element_id=available_item.get("id", ""),
                         available=True,
@@ -431,9 +429,7 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
                 name = _extract_name_from_item_div(bti3)
                 if name:
                     item = Item(
-                        slot=(
-                            slot_text if not slot_text.isdigit() else int(slot_text)
-                        ),
+                        slot=(slot_text if not slot_text.isdigit() else int(slot_text)),
                         name=name,
                         element_id="",
                         available=False,
