@@ -208,3 +208,6 @@ __marimo__/
 
 # MacOS system files
 .DS_Store
+
+# UV lock file
+uv.lock
