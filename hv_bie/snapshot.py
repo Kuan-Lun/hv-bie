@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from dataclasses import replace
+
 from bs4 import BeautifulSoup
 
 from .parsers.core import (
@@ -10,8 +12,6 @@ from .parsers.core import (
     parse_player_buffs,
     parse_player_vitals,
 )
-from dataclasses import replace
-
 from .types.models import BattleSnapshot
 
 
