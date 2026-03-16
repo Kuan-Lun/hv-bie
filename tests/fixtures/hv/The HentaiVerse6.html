@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://hentaiverse.org/isekai/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>The HentaiVerse</title>
+	<link rel="stylesheet" type="text/css" href="./The HentaiVerse_files/hvg.css">
+	<link rel="stylesheet" type="text/css" href="./The HentaiVerse_files/hvb.css">
+	<meta name="robots" content="noindex,nofollow">
+	<link rel="icon" type="image/png" href="https://hentaiverse.org/isekai/y/favicon.png">
+</head>
+<body>
+<script type="text/javascript" src="./The HentaiVerse_files/hvc.js.下載"></script>
+<script type="text/javascript">
+var IMG_URL = "/isekai/y/";
+var MAIN_URL = "https://hentaiverse.org/isekai/";
+</script>
+
+<div id="csp"><div id="mainpane">
+<div id="battle_top">
+	<div id="pane_completion"></div>
+
+	<div id="pane_effects"><img src="./The HentaiVerse_files/regen.png" onmouseover="battle.set_infopane_effect(&#39;Regen&#39;,&#39;The holy effects of the spell are restoring your body.&#39;,16)" onmouseout="battle.clear_infopane()"> <img src="./The HentaiVerse_files/spiritpot.png" onmouseover="battle.set_infopane_effect(&#39;Refreshment&#39;,&#39;The Spirit Restorative is refreshing your spirit.&#39;,42)" onmouseout="battle.clear_infopane()"> <img src="./The HentaiVerse_files/manapot.png" onmouseover="battle.set_infopane_effect(&#39;Replenishment&#39;,&#39;The Mana Restorative is replenishing your magic reserves.&#39;,42)" onmouseout="battle.clear_infopane()"> <img src="./The HentaiVerse_files/healthpot.png" onmouseover="battle.set_infopane_effect(&#39;Regeneration&#39;,&#39;The Health Restorative is regenerating your body.&#39;,42)" onmouseout="battle.clear_infopane()"> <img src="./The HentaiVerse_files/protection.png" onmouseover="battle.set_infopane_effect(&#39;Protection&#39;,&#39;Places a shield effect on the target, absorbing 25% of the damage from all attacks.&#39;,&#39;autocast&#39;)" onmouseout="battle.clear_infopane()"> <img src="./The HentaiVerse_files/haste.png" onmouseover="battle.set_infopane_effect(&#39;Hastened&#39;,&#39;The target has been hastened, increasing its action speed by 25%.&#39;,&#39;autocast&#39;)" onmouseout="battle.clear_infopane()"> <img src="./The HentaiVerse_files/absorb.png" onmouseover="battle.set_infopane_effect(&#39;Absorbing Ward&#39;,&#39;The next magical attack against the target has a chance to be absorbed and partially converted to MP.&#39;,&#39;permanent&#39;)" onmouseout="battle.clear_infopane()"> </div>
+</div>
+
+<div id="battle_main">
+	<div id="battle_left">
+		<div id="pane_action" onmouseout="battle.clear_infopane()">
+<div><img id="ckey_attack" onclick="battle.lock_action(this,0,&#39;attack&#39;)" onmouseover="battle.set_infopane(&#39;Attack&#39;)" src="./The HentaiVerse_files/attack_n.png"></div>
+<div><img id="ckey_skill" onclick="battle.lock_action(this,0,&#39;skill&#39;)" onmouseover="battle.set_infopane(&#39;Skillbook&#39;)" src="./The HentaiVerse_files/skill_n.png"></div>
+<div><img id="ckey_items" onclick="battle.lock_action(this,0,&#39;items&#39;)" onmouseover="battle.set_infopane(&#39;Items&#39;)" src="./The HentaiVerse_files/items_n.png"></div>
+<div><img id="ckey_spirit" onclick="battle.lock_action(this,0,&#39;spirit&#39;)" onmouseover="battle.set_infopane(&#39;Spirit&#39;)" src="./The HentaiVerse_files/spirit_a.png"></div>
+<div><img id="ckey_defend" onclick="battle.lock_action(this,0,&#39;defend&#39;)" onmouseover="battle.set_infopane(&#39;Defend&#39;)" src="./The HentaiVerse_files/defend_n.png"></div>
+<div><img id="ckey_focus" onclick="battle.lock_action(this,0,&#39;focus&#39;)" onmouseover="battle.set_infopane(&#39;Focus&#39;)" src="./The HentaiVerse_files/focus_n.png"></div>
+		</div>
+
+		<div id="pane_vitals" class="nosel"><div id="dvbh"><div><img src="./The HentaiVerse_files/bar_bgreen.png" style="width:359px"></div></div><div id="dvbm"><div><img src="./The HentaiVerse_files/bar_blue.png" style="width:201px"></div></div><div id="dvbs"><div><img src="./The HentaiVerse_files/bar_red.png" style="width:218px"></div></div><div id="dvbc"><div><img src="./The HentaiVerse_files/bar_orange.png" style="width:190px"></div></div><div id="dvrhb">2243</div><div id="dvrm">101</div><div id="dvrs">60</div><div id="dvrc">115</div></div>
+
+		<div id="pane_quickbar" onmouseout="battle.clear_infopane()"><div id="quickbar"><div id="qb1" class="btqs" onclick="battle.lock_action(this,1,&#39;magic&#39;,311); battle.set_friendly_skill(311); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Cure&#39;, &#39;Restores a moderate amount of Health on the target.&#39;, &#39;0530&#39;, 19, 0, 2)"><img src="./The HentaiVerse_files/0530.png" class="btqi"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div id="qb3" class="btqs" onclick="battle.lock_action(this,1,&#39;magic&#39;,312); battle.set_friendly_skill(312); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Regen&#39;, &#39;Places a heal over time effect on the target.&#39;, &#39;1030&#39;, 34, 0, 0)"><img src="./The HentaiVerse_files/1030.png" class="btqi"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs" onmouseover="battle.set_infopane_spell(&#39;Absorb&#39;, &#39;The next magical attack against the target has a chance to be absorbed and partially converted to MP.&#39;, &#39;1033&#39;, 28, 0, 20)"><img src="./The HentaiVerse_files/1033.png" class="btqi" style="opacity:0.5"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div class="btqs"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div id="qb15" class="btqs" onclick="battle.lock_action(this,1,&#39;magic&#39;,411); battle.set_friendly_skill(411); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Protection&#39;, &#39;Places a shield effect on the target, absorbing 25% of the damage from all attacks.&#39;, &#39;0532&#39;, 23, 0, 0)"><img src="./The HentaiVerse_files/0532.png" class="btqi"><img src="./The HentaiVerse_files/b.png" class="btqb"></div><div id="qb16" class="btqs" onclick="battle.lock_action(this,1,&#39;magic&#39;,1001); battle.set_friendly_skill(1001); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Flee&#39;, &#39;Run away from the current battle.&#39;, &#39;sflee&#39;, 0, 0, 0)"><img src="./The HentaiVerse_files/sflee.png" class="btqi"><img src="./The HentaiVerse_files/b.png" class="btqb"></div></div></div>
+
+		<div id="infopane"><div class="btii">Battle Time</div><div>Choose from the Battle Actions highlighted above, and use them to defeat your enemies listed to the right. When all enemies are reduced to zero Health, you win. If your Health reaches zero, you are defeated.</div></div>
+
+		<div id="pane_log" class="bttp">
+			<table id="textlog"><tbody><tr><td class="tlb">Pa115 has been defeated.</td></tr><tr><td class="tl">Bleeding Wound hits Pa115 for 677 damage.</td></tr><tr><td class="tlb">The effect Overwhelming Strikes  has worn off.</td></tr><tr><td class="tl">Regeneration restores 54 points of health.</td></tr><tr><td class="tl">Replenishment restores 2 points of magic.</td></tr><tr><td class="tl">Refreshment restores 1 points of spirit.</td></tr><tr><td class="tl">Regen restores 142 points of health.</td></tr><tr><td class="tl">Low-grade Farmer 153 glances you; you partially block the attack, and take 26 points of Piercing damage.</td></tr><tr><td class="tl">Pa115 glances you, causing 34 points of Crushing damage.</td></tr><tr><td class="tl">You crit Pa115, which partially parries, causing 1177 points of Slashing damage.</td></tr><tr><td class="tlb">Pa115 gains the effect Bleeding Wound.</td></tr><tr><td class="tls"></td></tr><tr><td class="tlb">The effect Stunned on Pa115 has worn off.</td></tr><tr><td class="tl">Regeneration restores 54 points of health.</td></tr><tr><td class="tl">Replenishment restores 2 points of magic.</td></tr><tr><td class="tl">Refreshment restores 1 points of spirit.</td></tr><tr><td class="tl">Regen restores 142 points of health.</td></tr><tr><td class="tl">Scary Ghost hits you, causing 47 points of Void damage.</td></tr><tr><td class="tl">Low-grade Farmer 153 hits you; you partially block the attack, and take 49 points of Piercing damage.</td></tr><tr><td class="tlb">Blue Slime has been defeated.</td></tr><tr><td class="tl">You hit Blue Slime, causing 1453 points of Slashing damage.</td></tr><tr><td class="tls"></td></tr><tr><td class="tl">Regeneration restores 54 points of health.</td></tr><tr><td class="tl">Replenishment restores 2 points of magic.</td></tr><tr><td class="tl">Refreshment restores 1 points of spirit.</td></tr><tr><td class="tl">Regen restores 142 points of health.</td></tr><tr><td class="tl">Scary Ghost hits you, causing 44 points of Void damage.</td></tr><tr><td class="tl">Blue Slime casts Bouip, which hits! You partially block the attack, and take 107 Holy damage.</td></tr><tr><td class="tl">Low-grade Farmer 153 crits you; you partially block and partially parry the attack, and take 32 points of Piercing damage.</td></tr><tr><td class="tl">You hit Blue Slime, causing 1620 points of Slashing damage.</td></tr><tr><td class="tls"></td></tr><tr><td class="tlb">Sleeping Dragon has been defeated.</td></tr><tr><td class="tl">You counter Sleeping Dragon for 994 points of Slashing damage.</td></tr><tr><td class="tl">Sleeping Dragon hits you; you partially block and partially parry the attack, and take 15 points of Piercing damage.</td></tr><tr><td class="tl">Scary Ghost glances you; you partially block the attack, and take 12 points of Void damage.</td></tr><tr><td class="tl">Blue Slime hits you; you partially block the attack, and take 21 points of Crushing damage.</td></tr><tr><td class="tl">You glance Sleeping Dragon, causing 534 points of Slashing damage.</td></tr><tr><td class="tls"></td></tr><tr><td class="tl">Regeneration restores 54 points of health.</td></tr><tr><td class="tl">Replenishment restores 2 points of magic.</td></tr><tr><td class="tl">Refreshment restores 1 points of spirit.</td></tr><tr><td class="tl">Regen restores 142 points of health.</td></tr><tr><td class="tl">Low-grade Farmer 153 crits you, causing 118 points of Piercing damage.</td></tr><tr><td class="tl">Sleeping Dragon glances you; you partially block the attack, and take 15 points of Piercing damage.</td></tr><tr><td class="tl">You hit Sleeping Dragon, causing 984 points of Slashing damage.</td></tr><tr><td class="tls"></td></tr><tr><td class="tl">Regeneration restores 54 points of health.</td></tr><tr><td class="tl">Replenishment restores 2 points of magic.</td></tr><tr><td class="tl">Refreshment restores 1 points of spirit.</td></tr><tr><td class="tl">Regen restores 142 points of health.</td></tr><tr><td class="tl">Scary Ghost hits you, causing 42 points of Void damage.</td></tr><tr><td class="tl">Blue Slime glances you; you partially block the attack, and take 11 points of Crushing damage.</td></tr><tr><td class="tl">Low-grade Farmer 153 hits you, causing 91 points of Piercing damage.</td></tr><tr><td class="tl">Sleeping Dragon uses Nightmare, which hits! You take 209 Piercing damage.</td></tr><tr><td class="tlb">Pa115 gains the effect Stunned.</td></tr><tr><td class="tl">You counter Pa115 for 1329 points of Slashing damage.</td></tr><tr><td class="tl">Pa115 hits you; you partially block the attack, and take 34 points of Crushing damage.</td></tr><tr><td class="tlb">You gain the effect Overwhelming Strikes.</td></tr><tr><td class="tlb">Saw World New New has been defeated.</td></tr><tr><td class="tl">You hit Saw World New New, causing 1333 points of Slashing damage.</td></tr><tr><td class="tls"></td></tr><tr><td class="tl">You parry the attack from Saw World New New.</td></tr><tr><td class="tl">Scary Ghost hits you, causing 47 points of Void damage.</td></tr><tr><td class="tl">Blue Slime hits you, causing 46 points of Crushing damage.</td></tr><tr><td class="tl">Low-grade Farmer 153 hits you, causing 92 points of Piercing damage.</td></tr><tr><td class="tl">You 2x-crit Saw World New New, causing 2580 points of Slashing damage.</td></tr><tr><td class="tlb">Saw World New New gains the effect Bleeding Wound.</td></tr><tr><td class="tls"></td></tr><tr><td class="tl">Spawned Monster F: MID=346406 (Low-grade Farmer 153) LV=85 HP=2094</td></tr><tr><td class="tl">Spawned Monster E: MID=7 (Scary Ghost) LV=85 HP=2227</td></tr><tr><td class="tl">Spawned Monster D: MID=297311 (Pa115) LV=85 HP=2714</td></tr><tr><td class="tl">Spawned Monster C: MID=10 (Blue Slime) LV=85 HP=1932</td></tr><tr><td class="tl">Spawned Monster B: MID=368817 (Sleeping Dragon) LV=85 HP=2444</td></tr><tr><td class="tl">Spawned Monster A: MID=324808 (Saw World New New) LV=85 HP=3155</td></tr><tr><td class="tl">Initializing Grindfest (Round 12 / 1000) ...</td></tr>
+			</tbody></table>
+		</div>
+
+		<div id="pane_skill" class="bttp" style="display:none" onmouseout="battle.clear_infopane()">
+			<div class="btpm1">
+				<div class="btpm2"><img src="./The HentaiVerse_files/sbsel_skills_s.png"></div>
+				<div class="btpm3"><img src="./The HentaiVerse_files/sbsel_spells_n.png" onclick="battle.reset_skill(); battle.toggle_magic_pane()"></div>
+			</div>
+
+			<table id="table_skills" class="btp"><tbody><tr><td colspan="2"><img src="./The HentaiVerse_files/skills_innate.png" style="padding-top:10px" alt="skills_innate"></td></tr><tr><td class="bts"><div id="1001" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,1001); battle.set_friendly_skill(1001); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Flee&#39;, &#39;Run away from the current battle.&#39;, &#39;sflee&#39;, 0, 0, 0)"><div class="fl f2b"><div class="c3f"></div><div class="c3l"></div><div class="c3e"></div><div class="c3e"></div></div></div></td></tr><tr><td class="bts"><div id="1011" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,1011); battle.set_hostile_skill(1011)" onmouseover="battle.set_infopane_spell(&#39;Scan&#39;, &#39;Retrieve data on the target.&#39;, &#39;sscan&#39;, 0, 0, 0)"><div class="fl f2b"><div class="c3s"></div><div class="c3c"></div><div class="c3a"></div><div class="c3n"></div></div></div></td></tr><tr><td colspan="2"><img src="./The HentaiVerse_files/skills_weapon.png" style="padding-top:10px" alt="skills_weapon"></td></tr><tr><td class="bts"><div id="2201" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,2201); battle.set_hostile_skill(2201)" onmouseover="battle.set_infopane_spell(&#39;Shield Bash&#39;, &#39;Bash an enemy with your shield to stun it, which opens up for devastating strikes with your weapon.&#39;, &#39;sshieldbash&#39;, 0, 1, 10)"><div class="fl f2b"><div class="c3s"></div><div class="c3h"></div><div class="c3i"></div><div class="c3e"></div><div class="c3l"></div><div class="c3d"></div><div class="c39"></div><div class="c3b"></div><div class="c3a"></div><div class="c3s"></div><div class="c3h"></div></div></div></td><td class="bts"><div id="2202" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,2202); battle.set_hostile_skill(2202)" onmouseover="battle.set_infopane_spell(&#39;Vital Strike&#39;, &#39;Follow up with an attack that inflicts internal bleeding and causes a large amount of damage if target is stunned.&#39;, &#39;svital&#39;, 0, 2, 10)"><div class="fl f2b"><div class="c3v"></div><div class="c3i"></div><div class="c3t"></div><div class="c3a"></div><div class="c3l"></div><div class="c39"></div><div class="c3s"></div><div class="c3t"></div><div class="c3r"></div><div class="c3i"></div><div class="c3k"></div><div class="c3e"></div></div></div></td><td class="bts"><div id="2203" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,2203); battle.set_hostile_skill(2203)" onmouseover="battle.set_infopane_spell(&#39;Merciful Blow&#39;, &#39;Finish off a mortally wounded enemy. Instantly kills a target with bleed and less than 25% health.&#39;, &#39;smerciful&#39;, 0, 4, 10)"><div class="fl f2b"><div class="c3m"></div><div class="c3e"></div><div class="c3r"></div><div class="c3c"></div><div class="c3i"></div><div class="c3f"></div><div class="c3u"></div><div class="c3l"></div><div class="c39"></div><div class="c3b"></div><div class="c3l"></div><div class="c3o"></div><div class="c3w"></div></div></div></td></tr></tbody></table>
+		</div>
+
+		<div id="pane_magic" class="bttp" style="display:none" onmouseout="battle.clear_infopane()">
+			<div class="btpm1">
+				<div class="btpm2"><img src="./The HentaiVerse_files/sbsel_skills_n.png" onclick="battle.reset_skill(); battle.toggle_skill_pane()"></div>
+				<div class="btpm3"><img src="./The HentaiVerse_files/sbsel_spells_s.png"></div>
+			</div>
+
+			<table id="table_magic" class="btp"><tbody><tr><td colspan="2"><img src="./The HentaiVerse_files/magic_damage.png" style="padding-top:10px" alt="magic_damage"></td></tr><tr><td class="bts"><div id="111" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,111); battle.set_hostile_skill(111)" onmouseover="battle.set_infopane_spell(&#39;Fiery Blast&#39;, &#39;A ball of fire is hurled at the target.&#39;, &#39;0130&#39;, 6, 0, 0)"><div class="fl f2b"><div class="c3f"></div><div class="c3i"></div><div class="c3e"></div><div class="c3r"></div><div class="c3y"></div><div class="c39"></div><div class="c3b"></div><div class="c3l"></div><div class="c3a"></div><div class="c3s"></div><div class="c3t"></div></div></div></td></tr><tr><td class="bts"><div id="121" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,121); battle.set_hostile_skill(121)" onmouseover="battle.set_infopane_spell(&#39;Freeze&#39;, &#39;Cold damage.&#39;, &#39;0730&#39;, 6, 0, 0)"><div class="fl f2b"><div class="c3f"></div><div class="c3r"></div><div class="c3e"></div><div class="c3e"></div><div class="c3z"></div><div class="c3e"></div></div></div></td></tr><tr><td class="bts"><div id="131" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,131); battle.set_hostile_skill(131)" onmouseover="battle.set_infopane_spell(&#39;Shockblast&#39;, &#39;A bolt of lightning strikes the target, causing Elec damage.&#39;, &#39;0330&#39;, 6, 0, 0)"><div class="fl f2b"><div class="c3s"></div><div class="c3h"></div><div class="c3o"></div><div class="c3c"></div><div class="c3k"></div><div class="c3b"></div><div class="c3l"></div><div class="c3a"></div><div class="c3s"></div><div class="c3t"></div></div></div></td></tr><tr><td class="bts"><div id="141" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,141); battle.set_hostile_skill(141)" onmouseover="battle.set_infopane_spell(&#39;Gale&#39;, &#39;A blast of wind hits the target, causing Wind damage.&#39;, &#39;0430&#39;, 6, 0, 0)"><div class="fl f2b"><div class="c3g"></div><div class="c3a"></div><div class="c3l"></div><div class="c3e"></div></div></div></td></tr><tr><td class="bts"><div id="151" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,151); battle.set_hostile_skill(151)" onmouseover="battle.set_infopane_spell(&#39;Smite&#39;, &#39;Holy damage.&#39;, &#39;1130&#39;, 14, 0, 0)"><div class="fl f2b"><div class="c3s"></div><div class="c3m"></div><div class="c3i"></div><div class="c3t"></div><div class="c3e"></div></div></div></td></tr><tr><td class="bts"><div id="161" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,161); battle.set_hostile_skill(161)" onmouseover="battle.set_infopane_spell(&#39;Corruption&#39;, &#39;Dark damage.&#39;, &#39;1230&#39;, 14, 0, 0)"><div class="fl f2b"><div class="c3c"></div><div class="c3o"></div><div class="c3r"></div><div class="c3r"></div><div class="c3u"></div><div class="c3p"></div><div class="c3t"></div><div class="c3i"></div><div class="c3o"></div><div class="c3n"></div></div></div></td></tr><tr><td colspan="2"><img src="./The HentaiVerse_files/magic_debuff.png" style="padding-top:10px" alt="magic_debuff"></td></tr><tr><td class="bts"><div id="211" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,211); battle.set_hostile_skill(211)" onmouseover="battle.set_infopane_spell(&#39;Drain&#39;, &#39;Inflicts Drain on one target, causing damage over time.&#39;, &#39;0133&#39;, 15, 0, 30)"><div class="fl f2b"><div class="c3d"></div><div class="c3r"></div><div class="c3a"></div><div class="c3i"></div><div class="c3n"></div></div></div></td><td class="bts"><div id="212" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,212); battle.set_hostile_skill(212)" onmouseover="battle.set_infopane_spell(&#39;Weaken&#39;, &#39;The target is weakened, making it deal less damage, and preventing it from scoring critical hits.&#39;, &#39;0333&#39;, 10, 0, 2)"><div class="fl f2b"><div class="c3w"></div><div class="c3e"></div><div class="c3a"></div><div class="c3k"></div><div class="c3e"></div><div class="c3n"></div></div></div></td></tr><tr><td class="bts"><div id="221" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,221); battle.set_hostile_skill(221)" onmouseover="battle.set_infopane_spell(&#39;Slow&#39;, &#39;The target is slowed by 30%, making it attack less frequently.&#39;, &#39;0233&#39;, 18, 0, 3)"><div class="fl f2b"><div class="c3s"></div><div class="c3l"></div><div class="c3o"></div><div class="c3w"></div></div></div></td><td class="bts"><div id="222" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,222); battle.set_hostile_skill(222)" onmouseover="battle.set_infopane_spell(&#39;Sleep&#39;, &#39;The target is lulled to sleep, preventing it from taking any actions.&#39;, &#39;0433&#39;, 25, 0, 7)"><div class="fl f2b"><div class="c3s"></div><div class="c3l"></div><div class="c3e"></div><div class="c3e"></div><div class="c3p"></div></div></div></td></tr><tr><td colspan="2"><img src="./The HentaiVerse_files/magic_curative.png" style="padding-top:10px" alt="magic_curative"></td></tr><tr><td class="bts"><div id="311" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,311); battle.set_friendly_skill(311); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Cure&#39;, &#39;Restores a moderate amount of Health on the target.&#39;, &#39;0530&#39;, 19, 0, 2)"><div class="fl f2b"><div class="c3c"></div><div class="c3u"></div><div class="c3r"></div><div class="c3e"></div></div></div></td><td class="bts"><div id="312" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,312); battle.set_friendly_skill(312); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Regen&#39;, &#39;Places a heal over time effect on the target.&#39;, &#39;1030&#39;, 34, 0, 0)"><div class="fl f2b"><div class="c3r"></div><div class="c3e"></div><div class="c3g"></div><div class="c3e"></div><div class="c3n"></div></div></div></td></tr><tr><td colspan="2"><img src="./The HentaiVerse_files/magic_support.png" style="padding-top:10px" alt="magic_support"></td></tr><tr><td class="bts"><div id="411" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,411); battle.set_friendly_skill(411); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Protection&#39;, &#39;Places a shield effect on the target, absorbing 25% of the damage from all attacks.&#39;, &#39;0532&#39;, 23, 0, 0)"><div class="fl f2b"><div class="c3p"></div><div class="c3r"></div><div class="c3o"></div><div class="c3t"></div><div class="c3e"></div><div class="c3c"></div><div class="c3t"></div><div class="c3i"></div><div class="c3o"></div><div class="c3n"></div></div></div></td><td class="bts"><div id="412" class="btsd" onclick="battle.lock_action(this,1,&#39;magic&#39;,412); battle.set_friendly_skill(412); battle.touch_and_go()" onmouseover="battle.set_infopane_spell(&#39;Haste&#39;, &#39;Speeds up all actions of the target, allowing it to attack more frequently.&#39;, &#39;0533&#39;, 29, 0, 0)"><div class="fl f2b"><div class="c3h"></div><div class="c3a"></div><div class="c3s"></div><div class="c3t"></div><div class="c3e"></div></div></div></td></tr><tr><td class="bts"><div id="421" class="btsd" onmouseover="battle.set_infopane_spell(&#39;Absorb&#39;, &#39;The next magical attack against the target has a chance to be absorbed and partially converted to MP.&#39;, &#39;1033&#39;, 28, 0, 20)" style="opacity:0.5"><div class="fl f2b"><div class="c3a"></div><div class="c3b"></div><div class="c3s"></div><div class="c3o"></div><div class="c3r"></div><div class="c3b"></div></div></div></td></tr></tbody></table>
+		</div>
+
+		<div id="pane_item" class="bttp" style="display:none" onmouseout="battle.clear_infopane()">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3p"></div></div></div>
+	<div class="bti3">
+		<div id="ikey_p" onclick="battle.lock_action(this,1,&#39;items&#39;,&#39;ikey_p&#39;); battle.set_friendly_skill(&#39;999&#39;); battle.touch_and_go()" onmouseover="battle.set_infopane_item(10006)"><div class="fl f2b"><div class="c3m"></div><div class="c3a"></div><div class="c3n"></div><div class="c3a"></div><div class="c39"></div><div class="c3g"></div><div class="c3e"></div><div class="c3m"></div></div></div>
+	</div>
+</div><div class="c"><div style="width:300px; float:left"><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div></div></div>
+	<div class="bti3">
+		<div><div class="fl f2g"><div class="c3h"></div><div class="c3e"></div><div class="c3a"></div><div class="c3l"></div><div class="c3t"></div><div class="c3h"></div><div class="c39"></div><div class="c3d"></div><div class="c3r"></div><div class="c3a"></div><div class="c3u"></div><div class="c3g"></div><div class="c3h"></div><div class="c3t"></div></div></div>
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c22"></div></div></div>
+	<div class="bti3">
+		<div id="ikey_2" onclick="battle.lock_action(this,1,&#39;items&#39;,&#39;ikey_2&#39;); battle.set_friendly_skill(&#39;2&#39;); battle.touch_and_go()" onmouseover="battle.set_infopane_item(11195)"><div class="fl f2b"><div class="c3h"></div><div class="c3e"></div><div class="c3a"></div><div class="c3l"></div><div class="c3t"></div><div class="c3h"></div><div class="c39"></div><div class="c3p"></div><div class="c3o"></div><div class="c3t"></div><div class="c3i"></div><div class="c3o"></div><div class="c3n"></div></div></div>
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c23"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c24"></div></div></div>
+	<div class="bti3">
+		<div><div class="fl f2g"><div class="c3m"></div><div class="c3a"></div><div class="c3n"></div><div class="c3a"></div><div class="c39"></div><div class="c3d"></div><div class="c3r"></div><div class="c3a"></div><div class="c3u"></div><div class="c3g"></div><div class="c3h"></div><div class="c3t"></div></div></div>
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c25"></div></div></div>
+	<div class="bti3">
+		<div id="ikey_5" onclick="battle.lock_action(this,1,&#39;items&#39;,&#39;ikey_5&#39;); battle.set_friendly_skill(&#39;5&#39;); battle.touch_and_go()" onmouseover="battle.set_infopane_item(11295)"><div class="fl f2b"><div class="c3m"></div><div class="c3a"></div><div class="c3n"></div><div class="c3a"></div><div class="c39"></div><div class="c3p"></div><div class="c3o"></div><div class="c3t"></div><div class="c3i"></div><div class="c3o"></div><div class="c3n"></div></div></div>
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c26"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c27"></div></div></div>
+	<div class="bti3">
+		<div><div class="fl f2g"><div class="c3s"></div><div class="c3p"></div><div class="c3i"></div><div class="c3r"></div><div class="c3i"></div><div class="c3t"></div><div class="c39"></div><div class="c3d"></div><div class="c3r"></div><div class="c3a"></div><div class="c3u"></div><div class="c3g"></div><div class="c3h"></div><div class="c3t"></div></div></div>
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c28"></div></div></div>
+	<div class="bti3">
+		<div id="ikey_8" onclick="battle.lock_action(this,1,&#39;items&#39;,&#39;ikey_8&#39;); battle.set_friendly_skill(&#39;8&#39;); battle.touch_and_go()" onmouseover="battle.set_infopane_item(11395)"><div class="fl f2b"><div class="c3s"></div><div class="c3p"></div><div class="c3i"></div><div class="c3r"></div><div class="c3i"></div><div class="c3t"></div><div class="c39"></div><div class="c3p"></div><div class="c3o"></div><div class="c3t"></div><div class="c3i"></div><div class="c3o"></div><div class="c3n"></div></div></div>
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c29"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div><div class="c20"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div><div class="c21"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div><div class="c22"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div><div class="c23"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div><div class="c24"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c21"></div><div class="c25"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div></div><div style="width:300px; float:left"><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3s"></div><div class="c21"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3s"></div><div class="c22"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3s"></div><div class="c23"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3s"></div><div class="c24"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3s"></div><div class="c25"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3s"></div><div class="c26"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3n"></div><div class="c21"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3n"></div><div class="c22"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3n"></div><div class="c23"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3n"></div><div class="c24"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3n"></div><div class="c25"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div><div class="c">
+<div class="bti1">
+	<div class="bti2"><div class="fc f2b"><div class="c3n"></div><div class="c26"></div></div></div>
+	<div class="bti3">
+		
+	</div>
+</div></div></div></div>
+		</div>
+	</div>
+
+	<div id="battle_right"><img id="ta_monster_1" src="./The HentaiVerse_files/taright.png" style=""><img id="ta_monster_2" src="./The HentaiVerse_files/taleft.png" style="">
+		<div id="pane_monster">
+<div id="mkey_1" class="btm1" style="opacity:0.3">
+	<div class="btm2"><div><img src="./The HentaiVerse_files/mon_a.png" alt="a"></div><div><div class="fc f4b"><div class="c48"></div><div class="c45"></div></div></div></div>
+	<div class="btm3"><div class="fl f2b"><div class="c3s"></div><div class="c3a"></div><div class="c3w"></div><div class="c39"></div><div class="c3w"></div><div class="c3o"></div><div class="c3r"></div><div class="c3l"></div><div class="c3d"></div><div class="c39"></div><div class="c3n"></div><div class="c3e"></div><div class="c3w"></div><div class="c39"></div><div class="c3n"></div><div class="c3e"></div><div class="c3w"></div></div></div>
+	<div class="btm4">
+		<div class="btm5"><img src="./The HentaiVerse_files/nbardead.png"></div>
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbarblue.png" style="width:55px" alt="magic">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		
+	</div>
+	<div class="btm6"></div>
+</div>
+<div id="mkey_2" class="btm1" style="opacity:0.3">
+	<div class="btm2"><div><img src="./The HentaiVerse_files/mon_b.png" alt="b"></div><div><div class="fc f4b"><div class="c48"></div><div class="c45"></div></div></div></div>
+	<div class="btm3"><div class="fl f2b"><div class="c3s"></div><div class="c3l"></div><div class="c3e"></div><div class="c3e"></div><div class="c3p"></div><div class="c3i"></div><div class="c3n"></div><div class="c3g"></div><div class="c39"></div><div class="c3d"></div><div class="c3r"></div><div class="c3a"></div><div class="c3g"></div><div class="c3o"></div><div class="c3n"></div></div></div>
+	<div class="btm4">
+		<div class="btm5"><img src="./The HentaiVerse_files/nbardead.png"></div>
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbarblue.png" style="width:25px" alt="magic">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		
+	</div>
+	<div class="btm6"></div>
+</div>
+<div id="mkey_3" class="btm1" style="opacity:0.3">
+	<div class="btm2"><div><img src="./The HentaiVerse_files/mon_c.png" alt="c"></div><div><div class="fc f4b"><div class="c48"></div><div class="c45"></div></div></div></div>
+	<div class="btm3"><div class="fl f2b"><div class="c3b"></div><div class="c3l"></div><div class="c3u"></div><div class="c3e"></div><div class="c39"></div><div class="c3s"></div><div class="c3l"></div><div class="c3i"></div><div class="c3m"></div><div class="c3e"></div></div></div>
+	<div class="btm4">
+		<div class="btm5"><img src="./The HentaiVerse_files/nbardead.png"></div>
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbarblue.png" style="width:18px" alt="magic">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		
+	</div>
+	<div class="btm6"></div>
+</div>
+<div id="mkey_4" class="btm1" style="opacity:0.3">
+	<div class="btm2"><div><img src="./The HentaiVerse_files/mon_d.png" alt="d"></div><div><div class="fc f4b"><div class="c48"></div><div class="c45"></div></div></div></div>
+	<div class="btm3"><div class="fl f2b"><div class="c3p"></div><div class="c3a"></div><div class="c21"></div><div class="c21"></div><div class="c25"></div></div></div>
+	<div class="btm4">
+		<div class="btm5"><img src="./The HentaiVerse_files/nbardead.png"></div>
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbarblue.png" style="width:68px" alt="magic">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		
+	</div>
+	<div class="btm6"></div>
+</div>
+<div id="mkey_5" class="btm1" onclick="battle.hover_target(this); battle.commit_target(5)" onmouseover="battle.hover_target(this)" onmouseout="battle.unhover_target()">
+	<div class="btm2"><div><img src="./The HentaiVerse_files/mon_e.png" alt="e"></div><div><div class="fc f4b"><div class="c48"></div><div class="c45"></div></div></div></div>
+	<div class="btm3"><div class="fl f2b"><div class="c3s"></div><div class="c3c"></div><div class="c3a"></div><div class="c3r"></div><div class="c3y"></div><div class="c39"></div><div class="c3g"></div><div class="c3h"></div><div class="c3o"></div><div class="c3s"></div><div class="c3t"></div></div></div>
+	<div class="btm4">
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbargreen.png" style="width:120px" alt="health">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbarblue.png" style="width:98px" alt="magic">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		
+	</div>
+	<div class="btm6"></div>
+</div>
+<div id="mkey_6" class="btm1" onclick="battle.hover_target(this); battle.commit_target(6)" onmouseover="battle.hover_target(this)" onmouseout="battle.unhover_target()">
+	<div class="btm2"><div><img src="./The HentaiVerse_files/mon_f.png" alt="f"></div><div><div class="fc f4b"><div class="c48"></div><div class="c45"></div></div></div></div>
+	<div class="btm3"><div class="fl f2b"><div class="c3l"></div><div class="c3o"></div><div class="c3w"></div><div class="c2g"></div><div class="c3g"></div><div class="c3r"></div><div class="c3a"></div><div class="c3d"></div><div class="c3e"></div><div class="c39"></div><div class="c3f"></div><div class="c3a"></div><div class="c3r"></div><div class="c3m"></div><div class="c3e"></div><div class="c3r"></div><div class="c39"></div><div class="c21"></div><div class="c25"></div><div class="c23"></div></div></div>
+	<div class="btm4">
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbargreen.png" style="width:120px" alt="health">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		<div class="btm5">
+<div class="chbd">
+	<img src="./The HentaiVerse_files/nbarblue.png" style="width:103px" alt="magic">
+	<img src="./The HentaiVerse_files/nbarfg.png">
+</div></div>
+		
+	</div>
+	<div class="btm6"></div>
+</div></div>
+	</div>
+</div>
+
+<div id="expholder">
+	<img src="./The HentaiVerse_files/expbar.png">
+	<img id="expbar" src="./The HentaiVerse_files/bar_blue.png" style="width:1112px">
+</div><script type="text/javascript" src="./The HentaiVerse_files/itemc.js.下載"></script>
+<script type="text/javascript">
+var default_magic_pane = 'skill';
+var quickbar_spell= [311,0,312,0,0,0,0,0,421,0,0,0,0,0,411,1001];
+var quickbar_self = [1,0,1,0,0,0,0,0,1,0,0,0,0,0,1,1];
+var do_healthflash = false;
+var vital_prefix = "d";
+var has_debug = false;
+var battle_token = "uge0c52ak5t";
+
+var battle = new Battle();
+</script></div></div></body></html>
