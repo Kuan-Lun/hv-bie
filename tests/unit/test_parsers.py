@@ -54,4 +54,4 @@ def test_log_and_items():
     assert (log.current_round is None) or log.current_round >= 1
 
     items = parse_items(s0, warnings)
-    assert "Health Draught" in items.items
+    assert "health draught" in items.items

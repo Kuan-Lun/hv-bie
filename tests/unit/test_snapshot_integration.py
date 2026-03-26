@@ -114,17 +114,17 @@ def test_parse_fixture_0():
     assert isinstance(snap.log.lines, list)
 
     # items
-    assert "Health Draught" in snap.items.items
+    assert "health draught" in snap.items.items
     needed_items = {
-        "Health Draught",
-        "Health Potion",
-        "Health Elixir",
-        "Mana Draught",
-        "Mana Potion",
-        "Mana Elixir",
-        "Spirit Draught",
-        "Spirit Potion",
-        "Spirit Elixir",
+        "health draught",
+        "health potion",
+        "health elixir",
+        "mana draught",
+        "mana potion",
+        "mana elixir",
+        "spirit draught",
+        "spirit potion",
+        "spirit elixir",
     }
     assert needed_items.issubset(set(snap.items.items.keys()))
     # quickbar placeholders parsed (16 slots in fixture, empty names)
@@ -275,15 +275,15 @@ def test_parse_fixture_2():
 
     # items
     items = snap.items.items
-    assert items["Spirit Gem"].slot == "p" and items["Spirit Gem"].available is True
-    assert items["Health Draught"].available is False
-    assert items["Health Potion"].available is True
-    assert items["Mana Draught"].available is False
-    assert items["Mana Potion"].available is False
-    assert items["Mana Elixir"].available is True
-    assert items["Spirit Draught"].available is True
-    assert items["Spirit Potion"].available is True
-    assert items["Spirit Elixir"].available is True
+    assert items["spirit gem"].slot == "p" and items["spirit gem"].available is True
+    assert items["health draught"].available is False
+    assert items["health potion"].available is True
+    assert items["mana draught"].available is False
+    assert items["mana potion"].available is False
+    assert items["mana elixir"].available is True
+    assert items["spirit draught"].available is True
+    assert items["spirit potion"].available is True
+    assert items["spirit elixir"].available is True
     assert len(snap.items.quickbar) == 16 and all(
         q.name == "" for q in snap.items.quickbar
     )
@@ -298,8 +298,8 @@ def test_parse_fixture_4():
     html = read_fixture("The HentaiVerse4.htm")
     snap = parse_snapshot(html)
 
-    assert "Spirit Gem" in snap.items.items
-    spirit_gem = snap.items.items["Spirit Gem"]
+    assert "spirit gem" in snap.items.items
+    spirit_gem = snap.items.items["spirit gem"]
     assert spirit_gem.slot == "p"
     assert spirit_gem.available
 
@@ -352,15 +352,15 @@ def test_parse_fixture_4():
         or "You hit Mikuru Asahina for 9793 void damage." in snap.log.lines
     )
     it = snap.items.items
-    assert it["Health Draught"].available is True
-    assert it["Health Potion"].available is True
-    assert it["Health Elixir"].available is True
-    assert it["Mana Draught"].available is False
-    assert it["Mana Potion"].available is True
-    assert it["Mana Elixir"].available is True
-    assert it["Spirit Draught"].available is True
-    assert it["Spirit Potion"].available is True
-    assert it["Spirit Elixir"].available is True
+    assert it["health draught"].available is True
+    assert it["health potion"].available is True
+    assert it["health elixir"].available is True
+    assert it["mana draught"].available is False
+    assert it["mana potion"].available is True
+    assert it["mana elixir"].available is True
+    assert it["spirit draught"].available is True
+    assert it["spirit potion"].available is True
+    assert it["spirit elixir"].available is True
     assert len(snap.items.quickbar) == 16 and all(
         q.name == "" for q in snap.items.quickbar
     )
@@ -374,11 +374,11 @@ def test_parse_fixture_5():
     html = read_fixture("The HentaiVerse5.htm")
     snap = parse_snapshot(html)
 
-    assert "Scroll of the Avatar" in snap.items.items
-    avatar_scroll = snap.items.items["Scroll of the Avatar"]
+    assert "scroll of the avatar" in snap.items.items
+    avatar_scroll = snap.items.items["scroll of the avatar"]
     assert avatar_scroll.slot == "s1"
     assert avatar_scroll.available
-    assert not snap.items.items["Scroll of the Gods"].available
+    assert not snap.items.items["scroll of the gods"].available
 
     # vitals
     assert 98.0 <= snap.player.hp_percent <= 100.0
@@ -446,10 +446,10 @@ def test_parse_fixture_5():
 
     # items
     it = snap.items.items
-    assert it["Health Draught"].available is True
-    assert it["Mana Draught"].available is True
-    assert it["Spirit Draught"].available is True
-    assert it["Last Elixir"].available is False
+    assert it["health draught"].available is True
+    assert it["mana draught"].available is True
+    assert it["spirit draught"].available is True
+    assert it["last elixir"].available is False
     assert len(snap.items.quickbar) == 16 and all(
         q.name == "" for q in snap.items.quickbar
     )
@@ -504,9 +504,9 @@ def test_parse_fixture_sprite():
     assert "Scary Ghost" in names
     # alive/dead
     assert snap.monsters[1].alive is False  # Saw World New New
-    assert snap.monsters[5].alive is True   # Scary Ghost
+    assert snap.monsters[5].alive is True  # Scary Ghost
     assert snap.monsters[5].hp_percent == 100.0
-    assert snap.monsters[6].alive is True   # Low-Grade Farmer 153
+    assert snap.monsters[6].alive is True  # Low-Grade Farmer 153
     for m in snap.monsters.values():
         if m.alive:
             assert 0.0 <= m.hp_percent <= 100.0
@@ -514,14 +514,14 @@ def test_parse_fixture_sprite():
 
     # items: names decoded from CSS sprites
     it = snap.items.items
-    assert "Mana Gem" in it and it["Mana Gem"].slot == "p"
-    assert it["Mana Gem"].available
-    assert "Health Potion" in it and it["Health Potion"].available is True
-    assert "Health Draught" in it and it["Health Draught"].available is False
-    assert "Mana Potion" in it and it["Mana Potion"].available is True
-    assert "Mana Draught" in it and it["Mana Draught"].available is False
-    assert "Spirit Potion" in it and it["Spirit Potion"].available is True
-    assert "Spirit Draught" in it and it["Spirit Draught"].available is False
+    assert "mana gem" in it and it["mana gem"].slot == "p"
+    assert it["mana gem"].available
+    assert "health potion" in it and it["health potion"].available is True
+    assert "health draught" in it and it["health draught"].available is False
+    assert "mana potion" in it and it["mana potion"].available is True
+    assert "mana draught" in it and it["mana draught"].available is False
+    assert "spirit potion" in it and it["spirit potion"].available is True
+    assert "spirit draught" in it and it["spirit draught"].available is False
 
     # log (plain text, works the same)
     assert snap.log.current_round == 12
