@@ -5,7 +5,7 @@
 - 套件名稱：hv_bie（HV Battle Intelligence Extractor）
 - 目的：將 HentaiVerse 戰鬥頁面的 HTML 字串解析為結構化的 Python dataclasses
 - 主要相依：beautifulsoup4（bs4）
-- Python 版本：3.13+
+- Python 版本：3.10+
 - 參考文件：[`SRS.md`](/SRS.md)
 
 ---
@@ -31,7 +31,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 
 ## 安裝與相依
 
-- Python 3.13+
+- Python 3.10+
 - 依賴：`beautifulsoup4>=4.13.4`
 
 ---
