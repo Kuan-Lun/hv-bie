@@ -81,7 +81,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
   - `sp_percent: float`（0.0–100.0）
   - `sp_value: int`
   - `overcharge_value: int`（整數 OC 值）
-  - `buffs: dict[str, Buff]`（以 Buff 名稱為鍵）
+  - `buffs: dict[str, Buff]`（以 Buff 名稱為鍵；名稱一律正規化為全小寫）
 
 ### Buff
 
@@ -121,7 +121,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
   - `hp_percent: float`（0.0–100.0；若死亡則為 0.0）
   - `mp_percent: float`（0.0–100.0；若死亡則為 0.0）
   - `sp_percent: float`（0.0–100.0；若死亡則為 0.0）
-  - `buffs: dict[str, Buff]`
+  - `buffs: dict[str, Buff]`（以 Buff 名稱為鍵；名稱一律正規化為全小寫）
 
 備註：
 
@@ -182,7 +182,7 @@ snap = parse_snapshot(html)
 
 # 讀取玩家資訊
 print(snap.player.hp_value, snap.player.hp_percent)
-print("Spirit Stance" in snap.player.buffs)
+print("spirit stance" in snap.player.buffs)
 
 # 讀取技能/法術
 for name, sk in snap.abilities.skills.items():

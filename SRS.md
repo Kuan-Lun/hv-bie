@@ -187,7 +187,7 @@
   * `sp_percent: float`
   * `sp_value: int`
   * `overcharge_value: int`
-  * `buffs: dict[str, Buff]`（以 Buff 名稱為鍵）
+  * `buffs: dict[str, Buff]`（以 Buff 名稱為鍵；名稱一律正規化為全小寫）
 
 * `Buff`
 
@@ -218,7 +218,7 @@
   * `hp_percent: float`
   * `mp_percent: float`
   * `sp_percent: float`
-  * `buffs: dict[str, Buff]`（以 Buff 名稱為鍵）
+  * `buffs: dict[str, Buff]`（以 Buff 名稱為鍵；名稱一律正規化為全小寫）
 
 * `CombatLog`
 
