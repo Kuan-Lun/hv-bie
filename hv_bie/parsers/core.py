@@ -376,13 +376,13 @@ def _extract_name_from_item_div(container) -> str:
             if inner:
                 text = inner.get_text(strip=True)
                 if text:
-                    return text
+                    return text.lower()
     # Sprite version
     sprite_div = container.find("div", class_="fl")
     if sprite_div:
         decoded = _decode_sprite_text(sprite_div).strip()
         if decoded:
-            return decoded.title()
+            return decoded.lower()
     return ""
 
 
