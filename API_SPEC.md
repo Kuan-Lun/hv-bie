@@ -93,8 +93,8 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 ### AbilitiesState
 
 - 欄位
-  - `skills: dict[str, Ability]`（以技能顯示名稱為鍵）
-  - `spells: dict[str, Ability]`（以法術顯示名稱為鍵）
+  - `skills: dict[str, Ability]`（以技能顯示名稱為鍵；名稱一律正規化為全小寫）
+  - `spells: dict[str, Ability]`（以法術顯示名稱為鍵；名稱一律正規化為全小寫）
 
 ### Ability
 

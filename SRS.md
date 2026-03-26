@@ -197,8 +197,8 @@
 
 * `AbilitiesState`
 
-  * `skills: dict[str, Ability]`（以技能「顯示名稱」為鍵）
-  * `spells: dict[str, Ability]`（以法術「顯示名稱」為鍵）
+  * `skills: dict[str, Ability]`（以技能「顯示名稱」為鍵；名稱一律正規化為全小寫）
+  * `spells: dict[str, Ability]`（以法術「顯示名稱」為鍵；名稱一律正規化為全小寫）
 
 * `Ability`
 
