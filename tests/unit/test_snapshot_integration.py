@@ -25,13 +25,13 @@ def test_parse_fixture_0():
     # player buffs (from effects pane) and no Spirit Stance (spirit_n)
     pbuf_names = set(snap.player.buffs.keys())
     assert {
-        "Protection",
-        "Haste",
-        "Shadow Veil",
-        "Spark of Life",
-        "Spirit Shield",
+        "protection",
+        "haste",
+        "shadow veil",
+        "spark of life",
+        "spirit shield",
     }.issubset(pbuf_names)
-    assert "Spirit Stance" not in pbuf_names
+    assert "spirit stance" not in pbuf_names
 
     # abilities
     # skills
@@ -165,7 +165,7 @@ def test_parse_fixture_1():
 
     # spirit stance in effects
     names = set(snap.player.buffs.keys())
-    assert "Spirit Stance" in names
+    assert "spirit stance" in names
 
     # system monster present (heuristic sets Rare for the one with style)
     assert any(m.system_monster_type for m in snap.monsters.values())
@@ -206,13 +206,13 @@ def test_parse_fixture_2():
 
     # player buffs include spirit stance and a mix of timed/permanent
     pbuf = snap.player.buffs
-    assert "Spirit Stance" in pbuf and pbuf["Spirit Stance"].is_permanent is True
+    assert "spirit stance" in pbuf and pbuf["spirit stance"].is_permanent is True
     expect_some = {
-        "Protection",
-        "Haste",
-        "Shadow Veil",
-        "Spark of Life",
-        "Spirit Shield",
+        "protection",
+        "haste",
+        "shadow veil",
+        "spark of life",
+        "spirit shield",
     }
     assert expect_some.issubset(set(pbuf.keys()))
     # has at least one numeric-duration buff
@@ -313,9 +313,9 @@ def test_parse_fixture_4():
     assert snap.player.overcharge_value == 230
 
     # no spirit stance
-    assert "Spirit Stance" not in snap.player.buffs
+    assert "spirit stance" not in snap.player.buffs
     # has Overwhelming Strikes stack notation
-    assert any(k.startswith("Overwhelming Strikes") for k in snap.player.buffs.keys())
+    assert any(k.startswith("overwhelming strikes") for k in snap.player.buffs.keys())
 
     # abilities samples
     assert snap.abilities.skills["shield bash"].available is True
@@ -337,7 +337,7 @@ def test_parse_fixture_4():
         snap.monsters[5].name == "Mikuru Asahina"
         and snap.monsters[5].system_monster_type == "Legendary"
     )
-    assert any("Stunned" in m.buffs for m in snap.monsters.values())
+    assert any("stunned" in m.buffs for m in snap.monsters.values())
     for m in snap.monsters.values():
         assert m.alive is True
         assert 0.0 < m.hp_percent <= 100.0
@@ -390,13 +390,13 @@ def test_parse_fixture_5():
     assert snap.player.overcharge_value == 16
 
     # buffs present, no spirit stance
-    assert "Spirit Stance" not in snap.player.buffs
+    assert "spirit stance" not in snap.player.buffs
     assert {
-        "Protection",
-        "Haste",
-        "Shadow Veil",
-        "Spark of Life",
-        "Spirit Shield",
+        "protection",
+        "haste",
+        "shadow veil",
+        "spark of life",
+        "spirit shield",
     }.issubset(set(snap.player.buffs))
 
     # abilities include higher-tier spells; some skills disabled
@@ -427,10 +427,10 @@ def test_parse_fixture_5():
     # monsters
     assert len(snap.monsters) == 6
     m1 = snap.monsters[1]
-    assert {"Stunned", "Deep Burns"}.issubset(set(m1.buffs))
+    assert {"stunned", "deep burns"}.issubset(set(m1.buffs))
     assert (
         snap.monsters[6].name == "Thundaga"
-        and "Penetrated Armor" in snap.monsters[6].buffs
+        and "penetrated armor" in snap.monsters[6].buffs
     )
     for m in snap.monsters.values():
         assert m.alive is True
@@ -476,10 +476,10 @@ def test_parse_fixture_sprite():
 
     # buffs
     pbuf = snap.player.buffs
-    assert "Spirit Stance" in pbuf
-    assert "Protection" in pbuf and pbuf["Protection"].is_permanent
-    assert "Haste" in pbuf and pbuf["Haste"].is_permanent
-    assert "Regen" in pbuf and pbuf["Regen"].remaining_turns == 16.0
+    assert "spirit stance" in pbuf
+    assert "protection" in pbuf and pbuf["protection"].is_permanent
+    assert "haste" in pbuf and pbuf["haste"].is_permanent
+    assert "regen" in pbuf and pbuf["regen"].remaining_turns == 16.0
 
     # abilities: names extracted from onmouseover
     assert "flee" in snap.abilities.skills

@@ -125,16 +125,16 @@ def parse_player_vitals(soup: BeautifulSoup, warnings: list[str]) -> PlayerState
 
 _ICON_MAP = {
     # direct names from onmouseover examples
-    "Regeneration": "Regeneration",
-    "Regen": "Regen",
-    "Absorbing Ward": "Absorbing Ward",
-    "Hastened": "Haste",
-    "Shadow Veil": "Shadow Veil",
-    "Spark of Life": "Spark of Life",
-    "Spirit Shield": "Spirit Shield",
-    "Overwhelming Strikes": "Overwhelming Strikes",
-    "Health Draught": "Regeneration",
-    "Heartseeker": "Heartseeker",
+    "Regeneration": "regeneration",
+    "Regen": "regen",
+    "Absorbing Ward": "absorbing ward",
+    "Hastened": "haste",
+    "Shadow Veil": "shadow veil",
+    "Spark of Life": "spark of life",
+    "Spirit Shield": "spirit shield",
+    "Overwhelming Strikes": "overwhelming strikes",
+    "Health Draught": "regeneration",
+    "Heartseeker": "heartseeker",
 }
 
 
@@ -147,8 +147,8 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
         and hasattr(spirit, "get")
         and "spirit_a.png" in (spirit.get("src") or "")
     ):
-        out["Spirit Stance"] = Buff(
-            name="Spirit Stance", remaining_turns=float("inf"), is_permanent=True
+        out["spirit stance"] = Buff(
+            name="spirit stance", remaining_turns=float("inf"), is_permanent=True
         )
 
     pane = soup.find("div", id="pane_effects")
@@ -173,8 +173,8 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
                 rem = float(dur_raw)
             except ValueError:
                 rem = 0.0
-        # normalize some names
-        norm = _ICON_MAP.get(name, name)
+        # normalize some names and lowercase
+        norm = _ICON_MAP.get(name, name.lower())
         # About-to-expire opacity indicates ticking, but we keep numeric seconds as-is
         out[norm] = Buff(
             name=norm,
@@ -313,7 +313,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
                     str(om),
                 )
                 if mm:
-                    bname = mm.group(1)
+                    bname = mm.group(1).lower()
                     dur_raw = mm.group(2).strip().strip("'\"")
                     is_perm = False
                     rem: Optional[float] = (
