@@ -140,7 +140,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 ### ItemsState
 
 - 欄位
-  - `items: dict[str, Item]`（以道具顯示名稱為鍵）
+  - `items: dict[str, Item]`（以道具顯示名稱為鍵；名稱一律正規化為全小寫）
   - `quickbar: list[QuickSlot]`（快捷列槽位，名稱可能為空字串）
 
 ### Item
@@ -198,7 +198,7 @@ print(snap.log.current_round, "/", snap.log.total_round)
 print(snap.log.lines[0], "->", snap.log.lines[-1])
 
 # 道具與快捷列
-print("Health Draught" in snap.items.items)
+print("health draught" in snap.items.items)
 print(len(snap.items.quickbar))
 
 # 輸出 JSON
