@@ -79,7 +79,7 @@ When adding or refactoring code, follow these principles: keep each module/funct
 - **Formatter**: Black (88 char line length)
 - **Linter**: Ruff with isort (I) enabled, E501 ignored
 - **Type checking**: mypy (strict=False, ignore_missing_imports=True)
-- **Python**: 3.9+ compatibility required
+- **Python**: 3.10+ compatibility required
 - **Sole runtime dependency**: beautifulsoup4
 - **Documentation**: README, API_SPEC, and SRS are in Traditional Chinese; code comments/identifiers are in English
 
