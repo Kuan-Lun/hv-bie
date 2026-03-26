@@ -209,10 +209,10 @@ def _parse_ability_div(div) -> Ability:
         first, second, third = nums[-3:]
         if first > 0 and second == 0:
             cost = first
-            cost_type = "MP"
+            cost_type = "mp"
         elif second > 0:
             cost = _OC_POINTS_PER_CHARGE * second
-            cost_type = "Overcharge"
+            cost_type = "overcharge"
         cd = third
     return Ability(
         name=name.lower(),

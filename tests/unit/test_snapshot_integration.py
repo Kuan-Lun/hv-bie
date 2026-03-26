@@ -46,13 +46,13 @@ def test_parse_fixture_0():
     assert "shield bash" in skills_names
     shield_bash_skill = snap.abilities.skills["shield bash"]
     assert shield_bash_skill.available is False
-    assert shield_bash_skill.cost_type == "Overcharge"
+    assert shield_bash_skill.cost_type == "overcharge"
     assert shield_bash_skill.cost == 25
     assert shield_bash_skill.cooldown_turns == 10
     assert "vital strike" in skills_names
     shield_bash_skill = snap.abilities.skills["vital strike"]
     assert shield_bash_skill.available is False
-    assert shield_bash_skill.cost_type == "Overcharge"
+    assert shield_bash_skill.cost_type == "overcharge"
     assert shield_bash_skill.cost == 50
     assert shield_bash_skill.cooldown_turns == 10
     # spells
@@ -61,13 +61,13 @@ def test_parse_fixture_0():
     assert "fiery blast" in spells_names
     fiery_blast_spell = snap.abilities.spells["fiery blast"]
     assert fiery_blast_spell.available is True
-    assert fiery_blast_spell.cost_type == "MP"
+    assert fiery_blast_spell.cost_type == "mp"
     assert fiery_blast_spell.cost == 29
     assert fiery_blast_spell.cooldown_turns == 0
     assert "cure" in spells_names
     cure_spell = snap.abilities.spells["cure"]
     assert cure_spell.available is True
-    assert cure_spell.cost_type == "MP"
+    assert cure_spell.cost_type == "mp"
     assert cure_spell.cost == 85
     assert cure_spell.cooldown_turns == 2
     # basic abilities shape
@@ -226,7 +226,7 @@ def test_parse_fixture_2():
     sb = snap.abilities.skills["shield bash"]
     assert (
         sb.available is True
-        and sb.cost_type == "Overcharge"
+        and sb.cost_type == "overcharge"
         and sb.cost == 25
         and sb.cooldown_turns == 10
     )
@@ -234,7 +234,7 @@ def test_parse_fixture_2():
     vs = snap.abilities.skills["vital strike"]
     assert (
         vs.available is False
-        and vs.cost_type == "Overcharge"
+        and vs.cost_type == "overcharge"
         and vs.cost == 50
         and vs.cooldown_turns == 10
     )
@@ -324,7 +324,7 @@ def test_parse_fixture_4():
     ab_absorb = snap.abilities.spells["absorb"]
     assert (
         ab_absorb.available is False
-        and ab_absorb.cost_type == "MP"
+        and ab_absorb.cost_type == "mp"
         and ab_absorb.cost == 128
         and ab_absorb.cooldown_turns == 20
     )
@@ -486,7 +486,7 @@ def test_parse_fixture_sprite():
     assert "shield bash" in snap.abilities.skills
     sb = snap.abilities.skills["shield bash"]
     assert sb.available is True
-    assert sb.cost_type == "Overcharge" and sb.cost == 25 and sb.cooldown_turns == 10
+    assert sb.cost_type == "overcharge" and sb.cost == 25 and sb.cooldown_turns == 10
 
     assert "fiery blast" in snap.abilities.spells
     assert snap.abilities.spells["fiery blast"].cost == 6
