@@ -103,7 +103,7 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
   - `element_id: str`（HTML 元素的 `id` 屬性，例如 `"312"`（Regen）、`"2201"`（Shield Bash）；供消費端以 `By.ID` 定位元素）
   - `available: bool`（是否可用）
   - `cost: int`（資源成本；對於 Overcharge 以 25 點/charge 換算到整數 OC 點）
-  - `cost_type: str | None`（可能值：`"MP"`、`"Overcharge"`、或 `None`）
+  - `cost_type: str | None`（可能值：`"mp"`、`"overcharge"`、或 `None`；一律正規化為全小寫）
   - `cooldown_turns: int`（冷卻回合數）
 
 解析規則摘要（來自 `parsers/core.py`）：

@@ -206,7 +206,7 @@
   * `element_id: str`  # HTML 元素的 id 屬性，供消費端以 By.ID 定位
   * `available: bool`
   * `cost: int`
-  * `cost_type: str | None`
+  * `cost_type: str | None`（可能值：`"mp"`、`"overcharge"`、或 `None`；一律正規化為全小寫）
   * `cooldown_turns: int`
 
 * `Monster`
