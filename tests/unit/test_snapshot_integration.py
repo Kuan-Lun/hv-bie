@@ -37,20 +37,20 @@ def test_parse_fixture_0():
     # skills
     assert len(snap.abilities.skills) == 5
     skills_names = set(snap.abilities.skills.keys())
-    assert "Flee" in skills_names
-    flee_skill = snap.abilities.skills["Flee"]
+    assert "flee" in skills_names
+    flee_skill = snap.abilities.skills["flee"]
     assert flee_skill.available is True
     assert flee_skill.cost_type is None
     assert flee_skill.cost == 0
     assert flee_skill.cooldown_turns == 0
-    assert "Shield Bash" in skills_names
-    shield_bash_skill = snap.abilities.skills["Shield Bash"]
+    assert "shield bash" in skills_names
+    shield_bash_skill = snap.abilities.skills["shield bash"]
     assert shield_bash_skill.available is False
     assert shield_bash_skill.cost_type == "Overcharge"
     assert shield_bash_skill.cost == 25
     assert shield_bash_skill.cooldown_turns == 10
-    assert "Vital Strike" in skills_names
-    shield_bash_skill = snap.abilities.skills["Vital Strike"]
+    assert "vital strike" in skills_names
+    shield_bash_skill = snap.abilities.skills["vital strike"]
     assert shield_bash_skill.available is False
     assert shield_bash_skill.cost_type == "Overcharge"
     assert shield_bash_skill.cost == 50
@@ -58,14 +58,14 @@ def test_parse_fixture_0():
     # spells
     assert len(snap.abilities.spells) == 32
     spells_names = set(snap.abilities.spells.keys())
-    assert "Fiery Blast" in spells_names
-    fiery_blast_spell = snap.abilities.spells["Fiery Blast"]
+    assert "fiery blast" in spells_names
+    fiery_blast_spell = snap.abilities.spells["fiery blast"]
     assert fiery_blast_spell.available is True
     assert fiery_blast_spell.cost_type == "MP"
     assert fiery_blast_spell.cost == 29
     assert fiery_blast_spell.cooldown_turns == 0
-    assert "Cure" in spells_names
-    cure_spell = snap.abilities.spells["Cure"]
+    assert "cure" in spells_names
+    cure_spell = snap.abilities.spells["cure"]
     assert cure_spell.available is True
     assert cure_spell.cost_type == "MP"
     assert cure_spell.cost == 85
@@ -222,16 +222,16 @@ def test_parse_fixture_2():
     )
 
     # abilities
-    assert "Shield Bash" in snap.abilities.skills
-    sb = snap.abilities.skills["Shield Bash"]
+    assert "shield bash" in snap.abilities.skills
+    sb = snap.abilities.skills["shield bash"]
     assert (
         sb.available is True
         and sb.cost_type == "Overcharge"
         and sb.cost == 25
         and sb.cooldown_turns == 10
     )
-    assert "Vital Strike" in snap.abilities.skills
-    vs = snap.abilities.skills["Vital Strike"]
+    assert "vital strike" in snap.abilities.skills
+    vs = snap.abilities.skills["vital strike"]
     assert (
         vs.available is False
         and vs.cost_type == "Overcharge"
@@ -239,13 +239,13 @@ def test_parse_fixture_2():
         and vs.cooldown_turns == 10
     )
     assert (
-        "Fiery Blast" in snap.abilities.spells
-        and snap.abilities.spells["Fiery Blast"].cost == 22
+        "fiery blast" in snap.abilities.spells
+        and snap.abilities.spells["fiery blast"].cost == 22
     )
     assert (
-        "Cure" in snap.abilities.spells
-        and snap.abilities.spells["Cure"].cost == 64
-        and snap.abilities.spells["Cure"].cooldown_turns == 2
+        "cure" in snap.abilities.spells
+        and snap.abilities.spells["cure"].cost == 64
+        and snap.abilities.spells["cure"].cooldown_turns == 2
     )
 
     # monsters
@@ -318,10 +318,10 @@ def test_parse_fixture_4():
     assert any(k.startswith("Overwhelming Strikes") for k in snap.player.buffs.keys())
 
     # abilities samples
-    assert snap.abilities.skills["Shield Bash"].available is True
-    assert snap.abilities.skills["Vital Strike"].available is True
-    assert snap.abilities.spells["Fiery Blast"].cost == 29
-    ab_absorb = snap.abilities.spells["Absorb"]
+    assert snap.abilities.skills["shield bash"].available is True
+    assert snap.abilities.skills["vital strike"].available is True
+    assert snap.abilities.spells["fiery blast"].cost == 29
+    ab_absorb = snap.abilities.spells["absorb"]
     assert (
         ab_absorb.available is False
         and ab_absorb.cost_type == "MP"
@@ -402,27 +402,27 @@ def test_parse_fixture_5():
     # abilities include higher-tier spells; some skills disabled
     spells = snap.abilities.spells
     for n in [
-        "Flames of Loki",
-        "Fimbulvetr",
-        "Wrath of Thor",
-        "Storms of Njord",
-        "Paradise Lost",
-        "Ragnarok",
+        "flames of loki",
+        "fimbulvetr",
+        "wrath of thor",
+        "storms of njord",
+        "paradise lost",
+        "ragnarok",
     ]:
         assert n in spells
     assert (
-        spells["Fiery Blast"].cost == 36
-        and spells["Cure"].cost == 120
-        and spells["Cure"].cooldown_turns == 2
+        spells["fiery blast"].cost == 36
+        and spells["cure"].cost == 120
+        and spells["cure"].cooldown_turns == 2
     )
     assert (
-        spells["Absorb"].available is True
-        and spells["Absorb"].cost == 180
-        and spells["Absorb"].cooldown_turns == 20
+        spells["absorb"].available is True
+        and spells["absorb"].cost == 180
+        and spells["absorb"].cooldown_turns == 20
     )
-    assert snap.abilities.skills["Shield Bash"].available is False
-    assert snap.abilities.skills["Vital Strike"].available is False
-    assert snap.abilities.skills["Merciful Blow"].available is False
+    assert snap.abilities.skills["shield bash"].available is False
+    assert snap.abilities.skills["vital strike"].available is False
+    assert snap.abilities.skills["merciful blow"].available is False
 
     # monsters
     assert len(snap.monsters) == 6
@@ -482,18 +482,18 @@ def test_parse_fixture_sprite():
     assert "Regen" in pbuf and pbuf["Regen"].remaining_turns == 16.0
 
     # abilities: names extracted from onmouseover
-    assert "Flee" in snap.abilities.skills
-    assert "Shield Bash" in snap.abilities.skills
-    sb = snap.abilities.skills["Shield Bash"]
+    assert "flee" in snap.abilities.skills
+    assert "shield bash" in snap.abilities.skills
+    sb = snap.abilities.skills["shield bash"]
     assert sb.available is True
     assert sb.cost_type == "Overcharge" and sb.cost == 25 and sb.cooldown_turns == 10
 
-    assert "Fiery Blast" in snap.abilities.spells
-    assert snap.abilities.spells["Fiery Blast"].cost == 6
-    assert "Cure" in snap.abilities.spells
-    cure = snap.abilities.spells["Cure"]
+    assert "fiery blast" in snap.abilities.spells
+    assert snap.abilities.spells["fiery blast"].cost == 6
+    assert "cure" in snap.abilities.spells
+    cure = snap.abilities.spells["cure"]
     assert cure.cost == 19 and cure.cooldown_turns == 2
-    assert snap.abilities.spells["Absorb"].available is False
+    assert snap.abilities.spells["absorb"].available is False
 
     # monsters: names decoded from CSS sprites
     assert len(snap.monsters) == 6

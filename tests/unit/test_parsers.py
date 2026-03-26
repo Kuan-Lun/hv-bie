@@ -33,8 +33,8 @@ def test_abilities_tables():
     warnings: list[str] = []
     ab = parse_abilities(s0, warnings)
     assert ab.skills and ab.spells
-    assert "Shield Bash" in ab.skills
-    assert "Fiery Blast" in ab.spells
+    assert "shield bash" in ab.skills
+    assert "fiery blast" in ab.spells
 
 
 def test_monsters_and_buffs():

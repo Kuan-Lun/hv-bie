@@ -215,7 +215,7 @@ def _parse_ability_div(div) -> Ability:
             cost_type = "Overcharge"
         cd = third
     return Ability(
-        name=name,
+        name=name.lower(),
         element_id=div.get("id", ""),
         available=available,
         cost=cost,
