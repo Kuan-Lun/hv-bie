@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=80.9.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "hv_bie"
@@ -35,20 +35,8 @@ dev = [
     "black>=23.9.1",
 ]
 
-[tool.setuptools]
-# Use automatic package discovery (PEP 621 recommended approach)
-include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["hv_bie*"]
-exclude = ["tests*"]
-
-[tool.setuptools.package-data]
-# Publish PEP 561 typing marker
-"hv_bie" = ["py.typed"]
-"hv_bie.types" = ["py.typed"]
-"hv_bie.parsers" = ["py.typed"]
+[tool.hatch.build.targets.wheel]
+packages = ["hv_bie"]
 
 [tool.black]
 line-length = 88
