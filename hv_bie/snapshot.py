@@ -31,8 +31,7 @@ def parse_snapshot(html: str) -> BattleSnapshot:
     monsters = parse_monsters(soup, warnings)
     clog = parse_log(soup, warnings)
     items = parse_items(soup, warnings)
-
-    return BattleSnapshot(
+    result = BattleSnapshot(
         player=player,
         abilities=abilities,
         monsters=monsters,
@@ -40,3 +39,5 @@ def parse_snapshot(html: str) -> BattleSnapshot:
         items=items,
         warnings=warnings,
     )
+    soup.decompose()
+    return result
