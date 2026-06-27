@@ -1,8 +1,5 @@
-from __future__ import annotations
-
 import json
 from dataclasses import asdict, dataclass, field
-from typing import Optional
 
 
 @dataclass(frozen=True)
@@ -18,7 +15,7 @@ class Ability:
     element_id: str
     available: bool
     cost: int
-    cost_type: Optional[str]
+    cost_type: str | None
     cooldown_turns: int
 
 
@@ -45,7 +42,7 @@ class Monster:
     slot_index: int
     name: str
     alive: bool
-    system_monster_type: Optional[str]
+    system_monster_type: str | None
     hp_percent: float
     mp_percent: float
     sp_percent: float
@@ -55,8 +52,8 @@ class Monster:
 @dataclass(frozen=True)
 class CombatLog:
     lines: list[str] = field(default_factory=list)
-    current_round: Optional[int] = None
-    total_round: Optional[int] = None
+    current_round: int | None = None
+    total_round: int | None = None
 
 
 @dataclass(frozen=True)

@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 import re
-from typing import Any, Optional
+from typing import Any
 
 from bs4 import BeautifulSoup
 
@@ -55,7 +53,7 @@ def _extract_name(container) -> str:
     return ""
 
 
-def _safe_int(text: Optional[str]) -> int:
+def _safe_int(text: str | None) -> int:
     try:
         return int(text.strip()) if text is not None else 0
     except Exception:
@@ -72,7 +70,7 @@ def parse_player_vitals(soup: BeautifulSoup, warnings: list[str]) -> PlayerState
         return PlayerState()
     pane: Any = pane_el
 
-    def width_px(selector: str) -> Optional[int]:
+    def width_px(selector: str) -> int | None:
         img = pane.find("img", src=re.compile(selector))
         if not img:
             return None
@@ -201,7 +199,7 @@ def _parse_ability_div(div) -> Ability:
     nums = [int(n) for n in re.findall(r"\b(\d+)\b", om)]
     cost = 0
     cd = 0
-    cost_type: Optional[str] = None
+    cost_type: str | None = None
     if len(nums) >= 3:
         # Heuristic from fixtures:
         # Spells: (mp_cost, 0, cooldown)
@@ -261,7 +259,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
         m_id_m = re.search(r"mkey_(\d+)", str(mdiv.get("id", "")))
         idx = int(m_id_m.group(1)) if m_id_m else -1
         # System monster typing: prefer name-based mapping; fallback to style heuristic
-        system_type: Optional[str] = None
+        system_type: str | None = None
         style = mdiv.get("style") or ""
         # name
         name_div = mdiv.find("div", class_="btm3")
@@ -316,7 +314,7 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
                     bname = mm.group(1).lower()
                     dur_raw = mm.group(2).strip().strip("'\"")
                     is_perm = False
-                    rem: Optional[float] = (
+                    rem: float | None = (
                         None  # parsed numeric seconds; inf for permanent
                     )
                     if dur_raw in ("autocast", "permanent"):
@@ -350,8 +348,8 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
 def parse_log(soup: BeautifulSoup, warnings: list[str]) -> CombatLog:
     tbl = soup.find("table", id="textlog")
     lines: list[str] = []
-    current: Optional[int] = None
-    total: Optional[int] = None
+    current: int | None = None
+    total: int | None = None
     if tbl and hasattr(tbl, "find_all"):
         for td in tbl.find_all("td"):
             t = td.get_text(strip=True)

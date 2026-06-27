@@ -1,6 +1,4 @@
-from __future__ import annotations
-
-from typing import Literal, Optional
+from typing import Literal
 
 """
 系統怪物（System Monsters）名稱到稀有度類型的對照表。
@@ -63,7 +61,7 @@ NAME_TO_TYPE: dict[str, SystemMonsterType] = {
 }
 
 
-def get_system_monster_type(name: str | None) -> Optional[SystemMonsterType]:
+def get_system_monster_type(name: str | None) -> SystemMonsterType | None:
     """由怪物顯示名稱回傳其系統怪物稀有度類型。
 
     若找不到對應，回傳 None。
