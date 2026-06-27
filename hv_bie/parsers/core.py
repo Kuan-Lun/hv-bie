@@ -420,7 +420,7 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
                     item = Item(
                         slot=(slot_text if not slot_text.isdigit() else int(slot_text)),
                         name=name,
-                        element_id=available_item.get("id", ""),
+                        element_id=str(available_item.get("id", "")),
                         available=True,
                     )
                     items[name] = item
