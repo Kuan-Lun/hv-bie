@@ -7,15 +7,13 @@ name = "hv_bie"
 version = "0.6.1"
 description = "HV Battle Intelligence Extractor: parse HentaiVerse battle HTML into structured Python dataclasses"
 readme = { file = "README.md", content-type = "text/markdown" }
-requires-python = ">=3.12,<3.15"
+requires-python = ">=3.14,<3.15"
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE"]
 authors = [{ name = "Kuan-Lun Wang", email = "polyphonicared@gmail.com" }]
 dependencies = ["beautifulsoup4>=4.15.0,<5.0.0"]
 classifiers = [
     "Programming Language :: Python :: 3.14",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.12",
     "Operating System :: OS Independent",
 ]
 
@@ -37,12 +35,12 @@ packages = ["hv_bie"]
 
 [tool.black]
 line-length = 88
-target-version = ["py312", "py313", "py314"]
+target-version = ["py314"]
 
 [tool.ruff]
 src = ["hv_bie"]
 line-length = 88
-target-version = "py312"
+target-version = "py314"
 
 [tool.ruff.lint]
 extend-select = ["I"]
@@ -52,6 +50,6 @@ extend-ignore = ["E501"]
 known-first-party = ["hv_bie"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.14"
 strict = false
 ignore_missing_imports = true
