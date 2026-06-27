@@ -2,8 +2,8 @@
 
 將 HentaiVerse 戰鬥頁面的 HTML 原始碼字串解析為結構化的 Python 資料類別（dataclasses）。
 
-- 支援環境：Python 3.13+
-- 主要相依：beautifulsoup4>=4.13.4
+- 支援環境：Python 3.12+
+- 主要相依：beautifulsoup4>=4.15.0
 - 套件名稱：`hv_bie`
 - 發佈名稱（PyPI）：`hv-bie`；匯入名稱（Python）：`hv_bie`
 
@@ -141,7 +141,7 @@ def parse_snapshot(html: str) -> BattleSnapshot: ...
 
 ## 相容性
 
-- Python 3.13+
+- Python 3.12+
 - 作業系統不限（純 Python，OS Independent）
 
 ---
