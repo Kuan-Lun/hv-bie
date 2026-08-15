@@ -73,10 +73,10 @@ def get_system_monster_type(name: str | None) -> SystemMonsterType | None:
 
 
 __all__ = [
-    "SystemMonsterType",
-    "RARE_NAMES",
     "LEGENDARY_NAMES",
-    "ULTIMATE_NAMES",
     "NAME_TO_TYPE",
+    "RARE_NAMES",
+    "ULTIMATE_NAMES",
+    "SystemMonsterType",
     "get_system_monster_type",
 ]

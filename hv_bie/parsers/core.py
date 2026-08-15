@@ -56,7 +56,7 @@ def _extract_name(container) -> str:
 def _safe_int(text: str | None) -> int:
     try:
         return int(text.strip()) if text is not None else 0
-    except Exception:
+    except ValueError:
         return 0
 
 
@@ -96,7 +96,7 @@ def parse_player_vitals(soup: BeautifulSoup, warnings: list[str]) -> PlayerState
         warnings.append("sp bar width missing")
     if oc_w is not None:
         # Fixtures show orange width mapped to 0..250 scale
-        oc_val = int(round(oc_w / _PLAYER_BAR_FULL_PX * 250))
+        oc_val = round(oc_w / _PLAYER_BAR_FULL_PX * 250)
 
     dvrhd = pane.find("div", id="dvrhd") or pane.find("div", id="dvrhb")
     dvrm = pane.find("div", id="dvrm")
@@ -108,7 +108,7 @@ def parse_player_vitals(soup: BeautifulSoup, warnings: list[str]) -> PlayerState
     if dvrc and hasattr(dvrc, "text"):
         oc_val = _safe_int(dvrc.text)
     elif oc_w is not None:
-        oc_val = int(round(oc_w / _PLAYER_BAR_FULL_PX * 250))
+        oc_val = round(oc_w / _PLAYER_BAR_FULL_PX * 250)
 
     return PlayerState(
         hp_percent=hp_pct,
@@ -247,6 +247,24 @@ def parse_abilities(soup: BeautifulSoup, warnings: list[str]) -> AbilitiesState:
     return AbilitiesState(skills=skills, spells=spells)
 
 
+def _monster_bar_percent(
+    monster_div: Any, src_pattern: str, alt: str | None = None
+) -> float:
+    bars = monster_div.find_all("img", src=re.compile(src_pattern))
+    for bar in bars:
+        if alt is None or bar.get("alt") == alt:
+            match = re.search(r"width:(\d+)px", str(bar.get("style", "")))
+            if match:
+                return max(
+                    0.0,
+                    min(
+                        100.0,
+                        int(match.group(1)) / _MONSTER_BAR_MAX_PX * 100.0,
+                    ),
+                )
+    return 0.0
+
+
 def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monster]:
     pane = soup.find("div", id="pane_monster")
     if not (pane and hasattr(pane, "find_all")):
@@ -282,23 +300,10 @@ def parse_monsters(soup: BeautifulSoup, warnings: list[str]) -> dict[int, Monste
         if system_type is None and ("border-color:" in style or "background:" in style):
             system_type = "Rare"
 
-        # vitals: widths up to 120px
-        def bar_pct(src_pat: str, alt: str | None = None) -> float:
-            bars = mdiv.find_all("img", src=re.compile(src_pat))
-            for bar in bars:
-                if alt is None or bar.get("alt") == alt:
-                    m = re.search(r"width:(\d+)px", str(bar.get("style", "")))
-                    if m:
-                        return max(
-                            0.0,
-                            min(100.0, int(m.group(1)) / _MONSTER_BAR_MAX_PX * 100.0),
-                        )
-            return 0.0
-
         dead = "opacity:0.3" in style
-        hp = -1.0 if dead else bar_pct(r"nbargreen\.png", "health")
-        mp = -1.0 if dead else bar_pct(r"nbarblue\.png", "magic")
-        sp = -1.0 if dead else bar_pct(r"nbarred\.png", "spirit")
+        hp = -1.0 if dead else _monster_bar_percent(mdiv, r"nbargreen\.png", "health")
+        mp = -1.0 if dead else _monster_bar_percent(mdiv, r"nbarblue\.png", "magic")
+        sp = -1.0 if dead else _monster_bar_percent(mdiv, r"nbarred\.png", "spirit")
 
         # monster buffs
         m_buffs: dict[str, Buff] = {}

@@ -315,7 +315,7 @@ def test_parse_fixture_4():
     # no spirit stance
     assert "spirit stance" not in snap.player.buffs
     # has Overwhelming Strikes stack notation
-    assert any(k.startswith("overwhelming strikes") for k in snap.player.buffs.keys())
+    assert any(k.startswith("overwhelming strikes") for k in snap.player.buffs)
 
     # abilities samples
     assert snap.abilities.skills["shield bash"].available is True
