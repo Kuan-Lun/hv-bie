@@ -2,6 +2,11 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Branch Policy
+
+- Do not create a development branch or switch to any non-primary branch.
+- Make all development changes directly on `main`.
+
 ## Project Overview
 
 **hv-bie** is a Python library that parses HentaiVerse battle HTML pages into structured dataclasses. Single public API: `parse_snapshot(html: str) -> BattleSnapshot`.
