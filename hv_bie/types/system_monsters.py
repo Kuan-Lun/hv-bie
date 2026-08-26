@@ -6,7 +6,8 @@ from typing import Literal
 使用方式：
 
     from hv_bie.types.system_monsters import get_system_monster_type
-    rarity = get_system_monster_type(name)  # 回傳 'Rare' / 'Legendary' / 'Ultimate' 或 None
+    rarity = get_system_monster_type(name)
+    # 回傳 'Rare' / 'Legendary' / 'Ultimate' 或 None
 
 注意：
 - 鍵為「怪物顯示名稱」，採不分大小寫比對（會先 .strip().casefold()）。

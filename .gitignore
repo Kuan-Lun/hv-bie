@@ -211,3 +211,12 @@ __marimo__/
 
 # UV lock file
 uv.lock
+
+# Repository-local policy and development tooling
+!/.githooks/
+!/.githooks/**
+!/.markdownlint-cli2.jsonc
+!/.release/
+!/.release/**
+node_modules/
+package-lock.json

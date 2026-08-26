@@ -61,11 +61,11 @@ print("Spirit Stance" in snap.player.buffs)
 
 # 技能/法術
 for name, sk in snap.abilities.skills.items():
- print(name, sk.available, sk.cost_type, sk.cost, sk.cooldown_turns)
+    print(name, sk.available, sk.cost_type, sk.cost, sk.cooldown_turns)
 
 # 怪物清單
 for idx, m in snap.monsters.items():
- print(idx, m.name, m.alive, m.system_monster_type, m.hp_percent)
+    print(idx, m.name, m.alive, m.system_monster_type, m.hp_percent)
 
 # 戰報（由舊到新）與回合資訊
 print(snap.log.current_round, "/", snap.log.total_round)
@@ -87,6 +87,7 @@ print(snap.to_json())
 ```python
 from hv_bie import parse_snapshot
 from hv_bie.types import BattleSnapshot
+
 
 def parse_snapshot(html: str) -> BattleSnapshot: ...
 ```
@@ -165,12 +166,12 @@ python -m pytest -q
 
 ## 版本與文件
 
-- 目前版本：`0.3.2`（見 `pyproject.toml`）
+- 目前版本以 `pyproject.toml` 為唯一來源。
 - 變更紀錄：[`CHANGELOG.md`](/CHANGELOG.md)
 - 規格文件：[`API_SPEC.md`](/API_SPEC.md)、[`SRS.md`](/SRS.md)
 
 ---
 
-## LICENSE
+## 授權
 
-本專案以 AGPL-3.0-or-later 授權釋出。詳見檔案：[LICENSE](/LICENSE)。
+本專案以 GPL-3.0-only 授權釋出。詳見 [LICENSE](LICENSE)。

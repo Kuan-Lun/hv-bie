@@ -26,7 +26,10 @@
 * **技能/法術**：頁面上可選取的動作（例如近戰技能、治療/攻擊法術）。
 * **戰報（Log）**：頁面上的戰鬥文字紀錄。
 * **怪物（Monsters）**：本次戰鬥中出現的敵方單位清單。
-* **系統怪物（System Monsters）**：HentaiVerse 中具有特殊標記或背景色的怪物，屬於系統生成的特殊敵人。依其稀有度，常見類型有 Rare、Legendary、Ultimate。更多資訊可參考 [EHWiki: System Monsters](https://ehwiki.org/wiki/System_Monsters)。
+* **系統怪物（System Monsters）**：HentaiVerse 中具有特殊標記或背景色的
+  怪物，屬於系統生成的特殊敵人。依其稀有度，常見類型有 Rare、Legendary、
+  Ultimate。更多資訊可參考
+  [EHWiki: System Monsters](https://ehwiki.org/wiki/System_Monsters)。
 
 ### 1.4 參考
 
@@ -120,15 +123,15 @@
 
 ## 6. 功能性需求（可驗收）
 
-| 編號   | 需求敘述                                       | 驗收準則（基於樣本 HTML）                       |
+| 編號 | 需求敘述 | 驗收準則（基於樣本 HTML） |
 | ---- | ------------------------------------------ | ------------------------------------- |
-| FR-1 | 可回傳玩家 HP/MP/SP 百分比與精確數值，以及 Overcharge 精確數值 | 值存在且型別正確；若缺漏則依 NFR 規定行為               |
-| FR-2 | 可列舉玩家 Buff 名稱與剩餘時間/型態                      | 至少能解析出樣本頁面中可見的多個 Buff；永久/自動施放型態以規定值表示 |
-| FR-3 | 可列舉技能與法術清單（含可用性、成本/冷卻若可得）                  | 核對樣本中至少各 3 項，欄位齊備                     |
-| FR-4 | 可列舉所有怪物資訊（名稱、存活、資源百分比、系統怪物類型）              | 核對樣本中出現的全部怪物，包含系統怪物標記                 |
-| FR-5 | 可擷取戰鬥文字行與回合資訊                              | 能回傳一組字串行列；若頁面顯示回合資訊則能解析               |
-| FR-6 | 可擷取道具/快捷列                                  | 核對樣本頁中實際顯示的項目與槽位                      |
-| FR-7 | 提供快照 API                                   | 一次呼叫取得完整結構（型別正確、鍵名穩定）                 |
+| FR-1 | 可回傳玩家 HP/MP/SP 百分比與精確數值，以及 Overcharge 精確數值 | 值存在且型別正確；若缺漏則依 NFR 規定行為 |
+| FR-2 | 可列舉玩家 Buff 名稱與剩餘時間/型態 | 至少能解析出樣本頁面中可見的多個 Buff；永久/自動施放型態以規定值表示 |
+| FR-3 | 可列舉技能與法術清單（含可用性、成本/冷卻若可得） | 核對樣本中至少各 3 項，欄位齊備 |
+| FR-4 | 可列舉所有怪物資訊（名稱、存活、資源百分比、系統怪物類型） | 核對樣本中出現的全部怪物，包含系統怪物標記 |
+| FR-5 | 可擷取戰鬥文字行與回合資訊 | 能回傳一組字串行列；若頁面顯示回合資訊則能解析 |
+| FR-6 | 可擷取道具/快捷列 | 核對樣本頁中實際顯示的項目與槽位 |
+| FR-7 | 提供快照 API | 一次呼叫取得完整結構（型別正確、鍵名穩定） |
 
 ---
 
@@ -253,6 +256,7 @@
 from hv_bie import parse_snapshot
 from hv_bie.types import BattleSnapshot
 
+
 def parse_snapshot(html: str) -> BattleSnapshot: ...
 ```
 
@@ -277,15 +281,15 @@ def parse_snapshot(html: str) -> BattleSnapshot: ...
 
 ## 12. 追溯矩陣（片段）
 
-| 需求   | 對應輸出欄位                                              | 測試                             |
+| 需求 | 對應輸出欄位 | 測試 |
 | ---- | --------------------------------------------------- | ------------------------------ |
-| FR-1 | `PlayerState.hp_* / mp_* / sp_* / overcharge_value` | `test_parse_vitals.py`         |
-| FR-2 | `PlayerState.buffs{}`                               | `test_parse_buffs.py`          |
-| FR-3 | `AbilitiesState.skills/spells (dict[str, Ability])` | `test_parse_abilities.py`      |
-| FR-4 | `monsters{slot_index: Monster}`（含 system\_monster\_type） | `test_parse_monsters.py`       |
-| FR-5 | `CombatLog.*`                                       | `test_parse_log.py`            |
-| FR-6 | `ItemsState.*`                                      | `test_parse_items.py`          |
-| FR-7 | `BattleSnapshot`                                    | `test_snapshot_integration.py` |
+| FR-1 | `PlayerState.hp_* / mp_* / sp_* / overcharge_value` | `test_parse_vitals.py` |
+| FR-2 | `PlayerState.buffs{}` | `test_parse_buffs.py` |
+| FR-3 | `AbilitiesState.skills/spells (dict[str, Ability])` | `test_parse_abilities.py` |
+| FR-4 | `monsters{slot_index: Monster}`（含 system\_monster\_type） | `test_parse_monsters.py` |
+| FR-5 | `CombatLog.*` | `test_parse_log.py` |
+| FR-6 | `ItemsState.*` | `test_parse_items.py` |
+| FR-7 | `BattleSnapshot` | `test_snapshot_integration.py` |
 
 ---
 

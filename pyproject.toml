@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hv_bie"
-version = "0.7.3"
+version = "0.7.4"
 description = "HV Battle Intelligence Extractor: parse HentaiVerse battle HTML into structured Python dataclasses"
 readme = { file = "README.md", content-type = "text/markdown" }
-requires-python = ">=3.14,<3.15"
-license = "AGPL-3.0-or-later"
+requires-python = ">=3.14"
+license = "GPL-3.0-only"
 license-files = ["LICENSE"]
 authors = [{ name = "Kuan-Lun Wang", email = "polyphonicared@gmail.com" }]
 dependencies = ["beautifulsoup4>=4.15.0,<5.0.0"]
@@ -24,18 +24,16 @@ Tracker = "https://github.com/Kuan-Lun/hv-bie/issues"
 
 [project.optional-dependencies]
 dev = [
-    "ruff>=0.16.4,<1.0.0",
-    "mypy>=2.3.1,<3.0.0",
-    "pytest>=9.1.1,<10.0.0",
-    "black>=26.5.1",
+    "build>=1.3.0",
+    "hatchling>=1.32.0",
+    "mypy>=2.3.1",
+    "packaging>=26.0",
+    "pytest>=9.1.1",
+    "ruff>=0.16.4",
 ]
 
 [tool.hatch.build.targets.wheel]
 packages = ["hv_bie"]
-
-[tool.black]
-line-length = 88
-target-version = ["py314"]
 
 [tool.ruff]
 src = ["hv_bie"]
@@ -43,13 +41,22 @@ line-length = 88
 target-version = "py314"
 
 [tool.ruff.lint]
-extend-select = ["I"]
-extend-ignore = ["E501"]
+select = ["B", "C4", "E", "F", "I", "PIE", "RUF", "SIM", "UP"]
+# Traditional Chinese prose legitimately uses full-width punctuation; these
+# homoglyph checks target identifiers and English prose rather than zh-Hant.
+ignore = ["RUF001", "RUF002", "RUF003"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["hv_bie"]
 
 [tool.mypy]
 python_version = "3.14"
-strict = false
-ignore_missing_imports = true
+files = ["hv_bie", "tests"]
+strict = true
+warn_unreachable = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.h2h.version]
+release-paths = ["LICENSE", "hv_bie/**"]

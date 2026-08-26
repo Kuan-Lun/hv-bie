@@ -14,11 +14,11 @@ from hv_bie.parsers import (
 FIX = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "hv"
 
 
-def soup_of(name: str):
+def soup_of(name: str) -> BeautifulSoup:
     return BeautifulSoup((FIX / name).read_text(encoding="utf-8"), "html.parser")
 
 
-def test_vitals_and_buffs():
+def test_vitals_and_buffs() -> None:
     s0 = soup_of("The HentaiVerse.htm")
     warnings: list[str] = []
     p = parse_player_vitals(s0, warnings)
@@ -28,7 +28,7 @@ def test_vitals_and_buffs():
     assert ("protection" in buffs) or ("spirit shield" in buffs)
 
 
-def test_abilities_tables():
+def test_abilities_tables() -> None:
     s0 = soup_of("The HentaiVerse.htm")
     warnings: list[str] = []
     ab = parse_abilities(s0, warnings)
@@ -37,7 +37,7 @@ def test_abilities_tables():
     assert "fiery blast" in ab.spells
 
 
-def test_monsters_and_buffs():
+def test_monsters_and_buffs() -> None:
     s1 = soup_of("The HentaiVerse1.htm")
     warnings: list[str] = []
     ms = parse_monsters(s1, warnings)
@@ -46,7 +46,7 @@ def test_monsters_and_buffs():
     assert any(m.buffs for m in ms.values())
 
 
-def test_log_and_items():
+def test_log_and_items() -> None:
     s0 = soup_of("The HentaiVerse.htm")
     warnings: list[str] = []
     log = parse_log(s0, warnings)

@@ -2,6 +2,7 @@ import re
 from typing import Any
 
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 from ..types.models import (
     AbilitiesState,
@@ -31,7 +32,7 @@ _SPRITE_MAP["c39"] = " "
 _SPRITE_MAP["c2g"] = "-"
 
 
-def _decode_sprite_text(container) -> str:
+def _decode_sprite_text(container: Tag) -> str:
     """Decode text from CSS sprite divs (e.g. div.c3a div.c3b → 'ab')."""
     chars = []
     for div in container.find_all("div", recursive=False):
@@ -42,9 +43,9 @@ def _decode_sprite_text(container) -> str:
     return "".join(chars)
 
 
-def _extract_name(container) -> str:
+def _extract_name(container: Tag) -> str:
     """Extract name from either plain-text or CSS-sprite container."""
-    text = container.get_text(strip=True)
+    text = str(container.get_text(strip=True))
     if text:
         return text
     decoded = _decode_sprite_text(container).strip()
@@ -183,7 +184,7 @@ def parse_player_buffs(soup: BeautifulSoup, warnings: list[str]) -> dict[str, Bu
     return out
 
 
-def _parse_ability_div(div) -> Ability:
+def _parse_ability_div(div: Tag) -> Ability:
     om = div.get("onmouseover", "")
     # Extract name from onmouseover (works for both text and sprite UI)
     name_match = re.search(r"set_infopane_spell\('([^']+)'", str(om))
@@ -196,7 +197,7 @@ def _parse_ability_div(div) -> Ability:
             name_div = div.find("div", class_="fl")
         name = _extract_name(name_div) if name_div else ""
     available = "opacity:0.5" not in (div.get("style") or "")
-    nums = [int(n) for n in re.findall(r"\b(\d+)\b", om)]
+    nums = [int(n) for n in re.findall(r"\b(\d+)\b", str(om))]
     cost = 0
     cd = 0
     cost_type: str | None = None
@@ -212,9 +213,10 @@ def _parse_ability_div(div) -> Ability:
             cost = _OC_POINTS_PER_CHARGE * second
             cost_type = "overcharge"
         cd = third
+    element_id = div.get("id", "")
     return Ability(
         name=name.lower(),
-        element_id=div.get("id", ""),
+        element_id=element_id if isinstance(element_id, str) else "",
         available=available,
         cost=cost,
         cost_type=cost_type,
@@ -369,15 +371,15 @@ def parse_log(soup: BeautifulSoup, warnings: list[str]) -> CombatLog:
     return CombatLog(lines=lines[::-1], current_round=current, total_round=total)
 
 
-def _extract_name_from_item_div(container) -> str:
-    """Extract item name from text-version (fc2 fal fcb/fcg) or sprite-version (fl f2b/f2g)."""
+def _extract_name_from_item_div(container: Tag) -> str:
+    """Extract an item name from its text or sprite representation."""
     # Text version
     for cls in ("fc2 fal fcb", "fc2 fal fcg"):
         name_div = container.find("div", class_=cls)
         if name_div:
             inner = name_div.find("div")
             if inner:
-                text = inner.get_text(strip=True)
+                text = str(inner.get_text(strip=True))
                 if text:
                     return text.lower()
     # Sprite version
@@ -443,7 +445,8 @@ def parse_items(soup: BeautifulSoup, warnings: list[str]) -> ItemsState:
 
     quickbar = soup.find("div", id="quickbar")
     if quickbar and hasattr(quickbar, "find_all"):
-        # In fixtures, quickbar has empty placeholders only; keep structure to future-fill if names become available
+        # Fixtures contain empty placeholders; retain their slots so names can
+        # be populated when the DOM exposes them.
         idx = 1
         for _ in quickbar.find_all("div", class_="btqs"):
             quick.append(QuickSlot(slot=idx, name=""))
