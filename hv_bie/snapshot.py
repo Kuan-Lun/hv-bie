@@ -15,7 +15,8 @@ from .types.models import BattleSnapshot
 
 def parse_snapshot(html: str) -> BattleSnapshot:
     """Parse a HentaiVerse battle HTML string into a BattleSnapshot.
-    This function never raises on missing sections; it fills defaults and records warnings.
+
+    Missing sections produce defaults and recorded warnings rather than errors.
     """
     soup = BeautifulSoup(html, "html.parser")
     warnings: list[str] = []

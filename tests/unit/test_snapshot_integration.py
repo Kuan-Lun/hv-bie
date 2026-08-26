@@ -9,7 +9,7 @@ def read_fixture(name: str) -> str:
     return (FIX / name).read_text(encoding="utf-8")
 
 
-def test_parse_fixture_0():
+def test_parse_fixture_0() -> None:
     html = read_fixture("The HentaiVerse.htm")
     snap = parse_snapshot(html)
 
@@ -150,7 +150,7 @@ def test_parse_fixture_0():
     assert isinstance(obj, dict) and obj.get("items", {}).get("items")
 
 
-def test_parse_fixture_1():
+def test_parse_fixture_1() -> None:
     html = read_fixture("The HentaiVerse1.htm")
     snap = parse_snapshot(html)
 
@@ -191,7 +191,7 @@ def test_parse_fixture_1():
     _ = snap.to_json()
 
 
-def test_parse_fixture_2():
+def test_parse_fixture_2() -> None:
     html = read_fixture("The HentaiVerse3.htm")
     snap = parse_snapshot(html)
 
@@ -294,7 +294,7 @@ def test_parse_fixture_2():
     _ = snap.to_json()
 
 
-def test_parse_fixture_4():
+def test_parse_fixture_4() -> None:
     html = read_fixture("The HentaiVerse4.htm")
     snap = parse_snapshot(html)
 
@@ -331,7 +331,7 @@ def test_parse_fixture_4():
 
     # monsters and buffs
     assert len(snap.monsters) == 5
-    # At least one monster has a system type; Mikuru Asahina is defined as Legendary in mapping
+    # Mikuru Asahina is mapped as Legendary, so at least one monster is typed.
     assert any(m.system_monster_type for m in snap.monsters.values())
     assert (
         snap.monsters[5].name == "Mikuru Asahina"
@@ -349,8 +349,7 @@ def test_parse_fixture_4():
         snap.log.lines
         and "You hit Mikuru Asahina for 9793 void damage."
         in {snap.log.lines[0], snap.log.lines[-1]}
-        or "You hit Mikuru Asahina for 9793 void damage." in snap.log.lines
-    )
+    ) or "You hit Mikuru Asahina for 9793 void damage." in snap.log.lines
     it = snap.items.items
     assert it["health draught"].available is True
     assert it["health potion"].available is True
@@ -370,7 +369,7 @@ def test_parse_fixture_4():
     _ = snap.to_json()
 
 
-def test_parse_fixture_5():
+def test_parse_fixture_5() -> None:
     html = read_fixture("The HentaiVerse5.htm")
     snap = parse_snapshot(html)
 
@@ -460,7 +459,7 @@ def test_parse_fixture_5():
     _ = snap.to_json()
 
 
-def test_parse_fixture_sprite():
+def test_parse_fixture_sprite() -> None:
     """Test CSS-sprite UI variant (anti-scraping version)."""
     html = read_fixture("The HentaiVerse6.html")
     snap = parse_snapshot(html)

@@ -45,7 +45,9 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 - 輸出
   - `BattleSnapshot`（見下方「資料模型契約」）。
 - 容錯與警告（重要）
-  - 不因缺漏 DOM 區塊而拋例外；會在 `BattleSnapshot.warnings` 陣列中加入說明字串（例如：`"pane_vitals not found"`, `"table_skills not found"` 等）。
+  - 不因缺漏 DOM 區塊而拋例外；會在 `BattleSnapshot.warnings`
+    陣列中加入說明字串（例如：`"pane_vitals not found"`、
+    `"table_skills not found"` 等）。
 - 一致性
   - 以同一份 HTML 輸入，所有子解析結果（玩家、技能/法術、怪物、戰報、道具）在同一快照中彼此一致。
 
@@ -100,7 +102,9 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 
 - 欄位
   - `name: str`
-  - `element_id: str`（HTML 元素的 `id` 屬性，例如 `"312"`（Regen）、`"2201"`（Shield Bash）；供消費端以 `By.ID` 定位元素）
+  - `element_id: str`（HTML 元素的 `id` 屬性，例如 `"312"`
+    （Regen）、`"2201"`（Shield Bash）；供消費端以 `By.ID`
+    定位元素）
   - `available: bool`（是否可用）
   - `cost: int`（資源成本；對於 Overcharge 以 25 點/charge 換算到整數 OC 點）
   - `cost_type: str | None`（可能值：`"mp"`、`"overcharge"`、或 `None`；一律正規化為全小寫）
@@ -165,7 +169,8 @@ snapshot = parse_snapshot(html: str)  # -> BattleSnapshot
 - 可能的告警（非詳盡）：
   - `"pane_vitals not found"`, `"hp bar width missing"`
   - `"table_skills not found"`, `"table_magic not found"`
-  - `"pane_monster not found"`, `"textlog not found"`, `"pane_item not found"`, `"quickbar not found"`
+  - `"pane_monster not found"`、`"textlog not found"`、
+    `"pane_item not found"`、`"quickbar not found"`
 - 呼叫端應：
   - 檢查 `warnings` 以利觀測缺漏情形。
   - 對於缺漏資料（例如百分比 0.0、空集合），自行決定後續流程（忽略、重試、記錄）。
@@ -213,6 +218,7 @@ print(snap.to_json())
 
 ```python
 from hv_bie.types.system_monsters import get_system_monster_type
+
 kind = get_system_monster_type(name)  # -> 'Rare' | 'Legendary' | 'Ultimate' | None
 ```
 
@@ -231,7 +237,8 @@ kind = get_system_monster_type(name)  # -> 'Rare' | 'Legendary' | 'Ultimate' | N
 ## 測試對應與驗證
 
 - 單元測試：`tests/unit/test_parsers.py` 檢查各子解析器（Vitals/Buffs/Abilities/Monsters/Log/Items）。
-- 整合測試：`tests/unit/test_snapshot_integration.py` 驗證 `parse_snapshot` 的整體結構與序列化（`as_dict`, `to_json`）。
+- 整合測試：`tests/unit/test_snapshot_integration.py` 驗證
+  `parse_snapshot` 的整體結構與序列化（`as_dict`、`to_json`）。
 - 測試用 HTML 樣本：`tests/fixtures/hv/`。
 
 ---

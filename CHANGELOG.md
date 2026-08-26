@@ -12,11 +12,14 @@ The format is based on Semantic Versioning. Keep entries concise and tied to act
 
 ### Breaking Changes
 
-- Change `Buff.remaining_turns` type from int to float; permanent durations now map to `float('inf')` (parsers and tests updated). If you relied on ints, adjust code to handle `math.inf` for permanence and floats for arithmetic.
+- Change `Buff.remaining_turns` type from int to float; permanent durations
+  now map to `float('inf')` (parsers and tests updated). If you relied on ints,
+  adjust code to handle `math.inf` for permanence and floats for arithmetic.
 
 ### New Features
 
-- Represent permanent buff durations as infinity to enable consistent duration math and comparisons across the API.
+- Represent permanent buff durations as infinity to enable consistent duration
+  math and comparisons across the API.
 
 ### Documentation
 
@@ -37,7 +40,8 @@ The format is based on Semantic Versioning. Keep entries concise and tied to act
 
 - Initial public release of the `hv_bie` Python package
 - Parsing engine for HentaiVerse battle snapshots (`hv_bie.parsers.core`)
-- Data models and types (`hv_bie.types.models`, `hv_bie.types.system_monsters`, `py.typed` for PEP 561)
+- Data models and types (`hv_bie.types.models`,
+  `hv_bie.types.system_monsters`, `py.typed` for PEP 561)
 - Snapshot orchestration API (`hv_bie.snapshot`)
 - Test suite and fixtures (`tests/unit`, `tests/perf`, `tests/fixtures/hv/*`)
 - Project documentation (`README.md`, `API_SPEC.md`, `SRS.md`)

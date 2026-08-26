@@ -1,5 +1,6 @@
 import json
 from dataclasses import asdict, dataclass, field
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -85,7 +86,7 @@ class BattleSnapshot:
     items: ItemsState
     warnings: list[str] = field(default_factory=list)
 
-    def as_dict(self) -> dict:
+    def as_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     def to_json(self) -> str:

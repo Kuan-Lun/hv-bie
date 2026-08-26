@@ -15,7 +15,7 @@ def _read_fixture(name: str) -> str:
     return (FIX / name).read_text(encoding="utf-8")
 
 
-def test_nfr_p1_parse_snapshot_performance():
+def test_nfr_p1_parse_snapshot_performance() -> None:
     # Config: allow overriding via env var to accommodate slower CI
     runs = int(os.getenv("NFR_P1_RUNS", "10"))
     threshold_ms = float(os.getenv("NFR_P1_MS", "50"))  # target ~50ms
@@ -42,6 +42,8 @@ def test_nfr_p1_parse_snapshot_performance():
     avg_ms = fmean(durations) * 1000.0
 
     # Assert average meets NFR-P1 target (lenient default; configurable via env)
-    assert (
-        avg_ms <= threshold_ms
-    ), f"NFR-P1 violated: avg parse_snapshot time {avg_ms:.2f} ms > {threshold_ms:.2f} ms (runs={runs}, samples={len(durations)})"
+    assert avg_ms <= threshold_ms, (
+        "NFR-P1 violated: average parse_snapshot time "
+        f"{avg_ms:.2f} ms > {threshold_ms:.2f} ms "
+        f"(runs={runs}, samples={len(durations)})"
+    )
